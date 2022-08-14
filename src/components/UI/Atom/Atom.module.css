@@ -1,0 +1,146 @@
+
+.atom {
+  position: relative;
+  height: inherit;
+  width: inherit;
+}
+
+.center {
+  position: absolute;
+  width: 21.05%;
+  height: 21.05%;
+  background-color: var(--color-red);
+  border-radius: 50%;
+  top: 39.47%;
+  left: 39.47%;
+  transition: all 1.5s;
+}
+
+.center:hover {
+  background-color: var(--color-dark);
+  width: 23.68%;
+  height: 23.68%;
+  top: 38.16%;
+  left: 38.16%;
+}
+
+.ring1 {
+  position: absolute;
+  border-radius: 50%;
+  width: 100%;
+  height: 39.47%;
+  top: 30.26%;
+  left: 0;
+}
+
+.ring2 {
+  position: absolute;
+  border-radius: 50%;
+  width: 39.47%;
+  height: 100%;
+  top: 0;
+  left: 30.26%;
+}
+.ring3 {
+  position: absolute;
+  border-radius: 50%;
+  width: 100%;
+  height: 39.47%;
+  top:30.26%;
+  left:0;
+  transform: rotate(45deg);
+}
+
+.ring4 {
+  position: absolute;
+  border-radius: 50%;
+  width: 100%;
+  height: 39.47%;
+  top:30.26%;
+  left:0;
+  transform: rotate(-45deg);
+}
+
+.dot1 {
+  position: absolute;
+  background-color: var(--color-dark);
+  width: 3.95%;
+  height: 3.95%;
+  border-radius: 50%;
+  top: 31.58%;
+  left: 23.68%;
+  transition: all 0.3s;
+}
+
+.dot1:hover {
+  position: absolute;
+  background-color: var(--color-red);
+  width: 5.26%;
+  height: 5.26%;
+  border-radius: 50%;
+  top: 30.79%;
+  left: 22.89%;
+}
+
+.dot2 {
+  position: absolute;
+  background-color: var(--color-dark);
+  width: 3.95%;
+  height: 3.95%;
+  border-radius: 50%;
+  top: 77.63%;
+  left: 55.26%;
+  transition: all 0.3s;
+}
+
+.dot2:hover {
+  position: absolute;
+  background-color: var(--color-red);
+  width: 5.26%;
+  height: 5.26%;
+  border-radius: 50%;
+  top: 76.84%;
+  left: 54.47%;
+}
+
+.dot3 {
+  position: absolute;
+  background-color: var(--color-dark);
+  width: 3.95%;
+  height: 3.95%;
+  border-radius: 50%;
+  top: 71.05%;
+  left: 11.32%;
+  transition: all 0.3s;
+}
+
+.dot3:hover {
+  position: absolute;
+  background-color: var(--color-red);
+  width: 5.26%;
+  height: 5.26%;
+  border-radius: 50%;
+  top: 70.26%;
+  left: 10.53%;
+}
+
+.dot4 {
+  position: absolute;
+  background-color: var(--color-dark);
+  width: 3.95%;
+  height: 3.95%;
+  border-radius: 50%;
+  top: 7.89%;
+  left: 59.21%;
+  transition: all 0.3s;
+}
+
+.dot4:hover {
+  position: absolute;
+  background-color: var(--color-red);
+  width: 5.26%;
+  height: 5.26%;
+  border-radius: 50%;
+  top: 7.11%;
+  left: 58.42%;
+}

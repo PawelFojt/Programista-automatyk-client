@@ -1,0 +1,47 @@
+@import '../../../vars.css';
+
+.mainMenu {
+  flex: 6;
+  background-color: var(--color-white);
+}
+
+.list {
+  display: flex;
+  justify-content: center;
+  padding: 0;
+  list-style: none;
+  height: 1.5rem;
+  gap: 1rem;
+}
+
+.item {
+  position: relative;
+  display:block;
+  line-height: 2rem;
+  font-size: 1.2rem;
+  font-weight: 300;
+  font-family: var(--font-ubuntu-300);
+  cursor: pointer;
+  color: var(--color-dark);
+  transition: all 0.5s;
+}
+
+.item:hover {
+  color: var(--color-red);
+}
+
+.item::after {
+  content: "";
+  position: absolute;
+  background-color: var(--color-red);
+  height: 2px;
+  width: 0;
+  left: 50%;
+  bottom: -5px;
+  transition: 0.5s;
+}
+
+.item:hover::after {
+  left: 0;
+  width: 100%;
+}

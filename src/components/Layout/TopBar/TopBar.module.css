@@ -1,0 +1,34 @@
+.topBar {
+  width: 100%;
+  height: 50px;
+  position: sticky;
+  top: 0;
+  z-index: 9999;
+  background-color: var(--color-white);
+  height: 5rem;
+  padding-bottom: 1rem;
+  padding-top: 0.5rem;
+}
+.main {
+  display: flex;
+  align-items: center;
+}
+.nav {
+  padding-bottom: 1rem;
+  background-color: var(--color-white);
+  box-shadow: 0 0 1rem 0;
+}
+
+.mode {
+  flex:1;
+  font-size: 2rem;
+  border: none;
+  cursor: pointer;
+  color: var(--color-dark);
+  background-color: inherit;
+  transition: all 0.3s;
+}
+
+.mode:hover {
+  color:var(--color-red);
+}

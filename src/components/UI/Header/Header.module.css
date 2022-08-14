@@ -1,0 +1,22 @@
+@import '../../../vars.css';
+
+.header {
+  flex: 6;
+}
+
+.titles {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: var(--color-dark);
+  font-family: var(--font-cormorant-400);
+}
+
+.title {
+  font-size: 30px;
+}
+
+.center {
+  position: absolute;
+  left: 10%;
+}
