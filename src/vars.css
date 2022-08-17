@@ -1,7 +1,7 @@
 
 :root {
   --color-dark: #4d4c51;
-  --color-white: #f1ece3;
+  --color-white: #f0ede8;
   --color-red: #de4f41;
   --font-cormorant-400: 'Cormorant SC', serif;
   --font-ubuntu-300: 'Ubuntu', sans-serif;
@@ -9,7 +9,7 @@
 
 
 .dark-mode {
-  --color-dark: #f1ece3;
+  --color-dark: #f0ede8;
   --color-white: #4d4c51;
 }
 

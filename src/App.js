@@ -2,8 +2,9 @@ import SideBar from "./components/Layout/SideBar/SideBar";
 import TopBar from "./components/Layout/TopBar/TopBar";
 import Home from "./components/pages/Home/Home";
 import {useState} from 'react';
-import Layout from "./components/Layout/Layout";
-import Footer from "./components/Layout/Footer/Footer";
+import Layout from './components/Layout/Layout';
+import Footer from './components/Layout/Footer/Footer';
+import Posts from './components/pages/Posts/Posts';
 import './vars.css';
 
 
@@ -14,7 +15,7 @@ function App() {
   }
   
   const topBar = <TopBar mode = {mode} onSwitch = {() => {modeHandler()}}/>
-  const content = <Home />
+  const content = <Posts />
   const sideBar = <SideBar />
   const footer = <Footer />
   
