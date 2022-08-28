@@ -1,7 +1,6 @@
 @import '../../../vars.css';
 
 .mainMenu {
-  flex: 6;
   background-color: var(--color-white);
 }
 
@@ -17,13 +16,12 @@
 .item {
   position: relative;
   display:block;
-  line-height: 2rem;
-  font-size: 1.2rem;
-  font-weight: 300;
-  font-family: var(--font-ubuntu-300);
+  font-size: 1rem;
+  font-family: var(--font-header);
   cursor: pointer;
   color: var(--color-dark);
   transition: all 0.5s;
+  text-decoration: none;
 }
 
 .item:hover {

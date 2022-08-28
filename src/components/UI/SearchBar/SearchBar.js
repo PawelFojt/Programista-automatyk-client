@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './SearchBar.module.css';
-import profileImg from "./profileImg.jpg";
+import profileImg from "../../../assets/profileImg.jpg";
 
 export default function SearchBar() {
   return (
