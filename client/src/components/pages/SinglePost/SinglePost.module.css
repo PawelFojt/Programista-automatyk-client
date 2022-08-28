@@ -1,0 +1,49 @@
+.flexContainer {
+  display: flex;
+  align-items: center;
+}
+
+.img {
+  width: 56vw;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.title {
+  font-size: 3rem;
+  margin:auto;
+  font-family: var(--font-header);
+}
+
+.icon {
+  margin: 5px;
+  cursor: pointer;
+  color: var(--color-white);
+  transition: all 0.3s;
+}
+
+
+.icon:hover {
+  color: var(--color-red);
+}
+
+.info {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.author {
+  font-family: var(--font-text);
+}
+
+.date {
+  font-family: var(--font-text);
+  margin-left: 1rem;
+}
+
+.desc {
+  margin-top: 1rem;
+    font-family: var(--font-text);
+}

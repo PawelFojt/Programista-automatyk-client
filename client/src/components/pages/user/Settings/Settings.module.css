@@ -1,0 +1,90 @@
+
+.settings {
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+  
+}
+
+.title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.updateTitle {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: var(--color-white);
+}
+
+.deleteTitle {
+  color:var(--color-white);
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+.img {
+  display: flex;
+  align-items: center;
+}
+
+.img > img {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  margin-right: 2rem;
+}
+
+.userIcon {
+  width: 1.8rem;
+  height: 1.8rem;
+  background-color: var(--color-white);
+  color: var(--color-dark);
+  cursor: pointer;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.form > label {
+  color: var(--color-white);
+  font-size: 1.2rem;
+}
+
+.form > input {
+  background-color: var(--color-dark);
+  color: var(--color-white);
+  border: none;
+  height: 2rem;
+  border-bottom: 1px var(--color-lightgrey) solid;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  transition: all 0.3s;
+}
+
+.form > input:hover {
+  background-color: var(--color-lightgrey);
+  border-radius: 5px;
+}
+
+.button {
+  width: 5rem;
+  height: 2rem;
+  border: none;
+  background-color: var(--color-white);
+  color: var(--color-dark);
+  border-radius: 5px;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: var(--color-red);
+}
