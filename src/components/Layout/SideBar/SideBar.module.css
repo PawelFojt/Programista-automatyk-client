@@ -1,0 +1,11 @@
+.link {
+  text-decoration: inherit;
+  color: inherit;
+}
+
+.catList {
+  margin-top: 1rem;
+  list-style-type: none;
+  font-size: 1.3rem;
+  border-bottom: 1px solid var(--color-lightgrey);
+}

@@ -14,6 +14,20 @@
   font-size: 3rem;
   margin:auto;
   font-family: var(--font-header);
+  font-weight: 400;
+}
+
+input {
+  background-color: inherit;
+  border: none;
+  width: 100%;
+  text-align: center;
+  color: inherit;
+  font-family: inherit;
+}
+
+input:focus {
+  outline: 1px solid var(--color-lightgrey);
 }
 
 .icon {
@@ -46,4 +60,39 @@
 .desc {
   margin-top: 1rem;
     font-family: var(--font-text);
+}
+
+textarea {
+  background-color: inherit;
+  border: none;
+  height: 15rem;
+  width: 100%;
+  color: inherit;
+  font-family: inherit;
+  font-size: inherit;
+}
+
+textarea:focus {
+  outline: 1px solid var(--color-lightgrey);
+}
+
+.link {
+  text-decoration: inherit;
+  color: inherit;
+}
+
+.submitButton {
+  border: none;
+  color: var(--color-dark);
+  background-color: var(--color-white);
+  height: 2rem;
+  font-size: 1rem;
+  width: 5rem;
+  border-radius: 1rem;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.submitButton:hover {
+  background-color: var(--color-red);
 }
