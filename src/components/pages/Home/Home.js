@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styles from './Home.module.css';
 
 export default function Home() {
@@ -6,18 +7,19 @@ export default function Home() {
     <div className={styles.home}>
         <h1>Automatyczny blog</h1>
         <div className={styles.container}>
-          <div className = {styles.item}>
-            <i className={`${styles.icon} fa-solid fa-book-open`}></i>
-            <p>Stwórz swoją własną bazę wiedzy!</p>
+          <div to="/posts" className = {styles.item}>
+            <Link to="/posts">
+              <i className={`${styles.icon} fa-solid fa-book-open`}></i>
+            </Link>
+            <p>Sprawdz dawkę wiedzy którą dla Ciebie przygotowaliśmy!</p>
           </div>
           <div className = {styles.item}>
-            <i className={`${styles.icon} fa-solid fa-book`}></i>
-            <p>Dodawaj dokumenty, instrukcje, instruktaże!</p>
+            <Link to="/newPost">
+              <i className={`${styles.icon} fa-solid fa-book`}></i>
+            </Link>
+            <p>Podziel się swoją wiedzą dodając nowy wpis!</p>
           </div>     
-          <div className = {styles.item}>
-            <i className={`${styles.icon} fa-solid fa-bookmark`}></i>
-            <p>Strona powstała z myślą dostępu do wiedzy w jednym miejscu z zakresu elektryki, automatyki, pneumatyki i hydrauliki. </p>
-          </div>     
+        
            
         </div>
     </div>
