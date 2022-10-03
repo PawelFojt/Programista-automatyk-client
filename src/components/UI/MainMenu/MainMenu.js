@@ -13,7 +13,7 @@ export default function MainMenu() {
         <ul className={styles.list}>
           <Link to="/" className={styles.item}>STRONA GŁÓWNA</Link >
           <Link to="/posts" className={styles.item}>BAZA WIEDZY</Link >
-          <Link to="/post" className={styles.item}>KONTAKT</Link >
+          <Link to="/contact" className={styles.item}>KONTAKT</Link >
           <Link to="/newpost" className={styles.item}>NOWY WPIS</Link >
           <Link to="/login" className={styles.item} onClick={handleLogout}>{user ? "WYLOGUJ" : "ZALOGUJ"}</Link >
         </ul>

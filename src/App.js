@@ -18,6 +18,7 @@ import Settings from './components/pages/user/Settings/Settings';
 import Login from './components/pages/user/Login/Login';
 import Register from './components/pages/user/Register/Register';
 import './vars.css';
+import Contact from './components/pages/Contact/Contact';
 
 
 function App() {
@@ -29,7 +30,7 @@ function App() {
   const topBar = <TopBar mode = {mode} onSwitch = {() => {modeHandler()}}/>
     const content = (
     <Routes>
-      <Route path="/post" element={<Post />} />
+      <Route path="/contact" element={<Contact />} />
       <Route path="/posts" element={<Posts />} />
       <Route path="/post/:postId" element={<SinglePost />} />
       <Route path="/newpost" element={user ? <NewPost /> : <Login />} />
