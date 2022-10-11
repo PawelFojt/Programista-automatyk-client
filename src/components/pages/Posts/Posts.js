@@ -7,20 +7,26 @@ import { useLocation } from 'react-router-dom';
 export default function Posts() {
   const [posts, setPosts] = useState([]);
   const {search} = useLocation();
+  const [loading, setLoading] = useState(true);
  
 
   useEffect(() =>{
     const fetchPosts = async ()=>{
       const res = await axios.get("/posts"+search);
       setPosts(res.data);
+      setLoading(false);
     }
     fetchPosts();
-  }, [search])
+  }, [search, loading])
   return (
     <div className={styles.posts}>
-      {posts.map((p) => (
+      {loading ? (
+        <p>ładowanie danych</p>
+        ) : (
+          posts.map((p) => (
         <Post key={p._id} post={p} />
-      ))}
+      ))
+      )}
      
     </div>
   );

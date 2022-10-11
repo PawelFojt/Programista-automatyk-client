@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, {useContext, useState} from 'react';
 import {
   BrowserRouter as Router,
   Route,
@@ -10,7 +10,6 @@ import TopBar from './components/Layout/TopBar/TopBar';
 import Layout from './components/Layout/Layout';
 import Footer from './components/Layout/Footer/Footer';
 import Home from './components/pages/Home/Home';
-import Post from './components/pages/Posts/Post/Post';
 import Posts from './components/pages/Posts/Posts';
 import SinglePost from './components/pages/SinglePost/SinglePost';
 import NewPost from './components/pages/Posts/Post/NewPost/NewPost';
@@ -26,7 +25,7 @@ function App() {
   function modeHandler() {
     mode === "dark-mode" ? setMode("") : setMode("dark-mode");
   }
-  const {user, isFetching} = useContext(Context);
+  const {user} = useContext(Context);
   const topBar = <TopBar mode = {mode} onSwitch = {() => {modeHandler()}}/>
     const content = (
     <Routes>
@@ -44,9 +43,6 @@ function App() {
   const sideBar = <SideBar />
   const footer = <Footer />
       
-  useEffect(()=> {
-    console.log(isFetching);
-  }, [isFetching])
 
 
   return (
