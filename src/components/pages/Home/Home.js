@@ -7,7 +7,7 @@ export default function Home() {
     <div className={styles.home}>
         <h1>Automatyczny blog</h1>
         <div className={styles.container}>
-          <div to="/posts" className = {styles.item}>
+          <div  className = {styles.item}>
             <Link to="/posts">
               <i className={`${styles.icon} fa-solid fa-book-open`}></i>
             </Link>
