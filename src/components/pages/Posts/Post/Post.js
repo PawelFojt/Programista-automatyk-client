@@ -3,7 +3,7 @@ import styles from './Post.module.css';
 import {Link} from 'react-router-dom';
 
 export default function Post(props) {
-  const PF = "http://localhost:5000/images/";
+  const PF = "http://localhost:5000/images/" || "https://programista-automatyk-api.herokuapp.com/images";
   return (
     <div className={styles.post}>
       {props.post.photo && (

@@ -12,7 +12,7 @@ export default function Posts() {
 
   useEffect(() =>{
     const fetchPosts = async ()=>{
-      const res = await axios.get("/posts"+search);
+      const res = await axios.get("https://programista-automatyk-api.herokuapp.com/posts"+search);
       setPosts(res.data);
       setLoading(false);
     }

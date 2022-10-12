@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom';
 
 export default function TopBar(props) {
   const {user} = useContext(Context);
-  const PF = "http://localhost:5000/images/";
+  const PF = "http://localhost:5000/images/" || "https://programista-automatyk-api.herokuapp.com/images";
   return (
     <>
       <div className={styles.topBar}>
