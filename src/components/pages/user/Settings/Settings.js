@@ -10,7 +10,7 @@ export default function Settings() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [success, setSuccess] = useState(null);
-  const PF = "http://localhost:5000/images/";
+  const PF = "/images/";
   
   const handleSubmit = async(e) => {
     e.preventDefault();
@@ -33,7 +33,7 @@ export default function Settings() {
       }
     }
     try {
-      const res = await axios.put("/users/"+user._id, updatedUser);
+      const res = await axios.put(process.env.PATH + "/users/" + user._id, updatedUser);
       setSuccess(true);
       dispatch({type:"UPDATE_SUCCESS", payload: res.data})
     } catch (err) {

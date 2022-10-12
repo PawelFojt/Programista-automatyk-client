@@ -15,7 +15,7 @@ export default function SinglePost() {
 
   useEffect(() => {
     const getPost = async () => {
-      const res = await axios.get("https://programista-automatyk-api.herokuapp.com/posts/" + path);
+      const res = await axios.get("/posts/" + path);
       setPost(res.data);
       setTitle(res.data.title);
       setDesc(res.data.desc);
@@ -23,7 +23,7 @@ export default function SinglePost() {
     getPost()
   }, [path])
 
-  const PF = "http://localhost:5000/images/";
+  const PF = "/images/";
   const handleDelete = async() => {
     try {
       await axios.delete("/posts/" + path, {
