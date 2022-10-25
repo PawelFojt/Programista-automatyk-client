@@ -30,24 +30,39 @@ export default function Settings() {
       try {
         await axios.post("/upload", data);
       } catch(err) {
+        console.log(err);
       }
     }
     try {
-      const res = await axios.put(process.env.PATH + "/users/" + user._id, updatedUser);
+      const res = await axios.put("/user/" + user._id, updatedUser);
       setSuccess(true);
       dispatch({type:"UPDATE_SUCCESS", payload: res.data})
     } catch (err) {
+      console.log(err);
       setSuccess(false);
-      dispatch({type:"UPDATE_FAILURE"})
+      dispatch({type:"UPDATE_FAILURE"});
     }
-  }
+  };
+
+  const handleDelete = async() => {
+    try {
+      await axios.delete("/user/" + user._id);
+      dispatch({type: "LOGOUT"});
+      window.location.replace("/");
+    } catch(err) {
+      console.log(user._id);
+      console.log(err);
+    }
+  };
+
+
   return (
     <div className={styles.settings}>
       <div className={styles.title}>
         <span className={styles.updateTitle}>
           Uaktualnij swoje konto
         </span>
-        <span className={styles.deleteTitle}>
+        <span onClick={handleDelete} className={styles.deleteTitle}>
           Usuń konto
         </span>
       </div>
@@ -59,7 +74,7 @@ export default function Settings() {
               alt="zdjęcie profilowe"
             />
             <label htmlFor="fileInput">
-              <i class={`${styles.userIcon} fa-solid fa-user`}></i>
+              <i className={`${styles.userIcon} fa-solid fa-user`}></i>
             </label>
             <input 
               style={{display:"none"}}

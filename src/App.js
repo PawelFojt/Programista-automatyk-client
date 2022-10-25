@@ -16,8 +16,9 @@ import NewPost from './components/pages/Posts/Post/NewPost/NewPost';
 import Settings from './components/pages/user/Settings/Settings';
 import Login from './components/pages/user/Login/Login';
 import Register from './components/pages/user/Register/Register';
-import './vars.css';
 import Contact from './components/pages/Contact/Contact';
+import './vars.css';
+
 
 
 function App() {

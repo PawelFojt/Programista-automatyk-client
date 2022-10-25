@@ -31,20 +31,21 @@ export default function SinglePost() {
       });
       window.location.replace("/posts")
     } catch(err) {
-
+      console.log(err);
     }
   };
 
   const handleUpdate = async() => {
     try {
-      await axios.put("/posts/" + path, {
+      await axios.patch("/posts/" + path, {
         username:user.username,
         title, 
         desc
       });
       setUpdateMode(false);
     } catch(err) {
-
+      console.log(user.username);
+      console.log(err);
     }
   }
   return (

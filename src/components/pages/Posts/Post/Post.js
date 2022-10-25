@@ -4,6 +4,7 @@ import {Link} from 'react-router-dom';
 
 export default function Post(props) {
   const PF ="/images/";
+  console.log(props)
   return (
     <div className={styles.post}>
       {props.post.photo && (

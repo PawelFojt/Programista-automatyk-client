@@ -7,6 +7,7 @@ export default function NewPost() {
   const [title, setTitle] = useState("");
   const [desc, setDesc] = useState("");
   const [file, setFile] = useState(null);
+  const [category, setCategory] = useState("")
   const {user} = useContext(Context);
 
   const handleSubmit = async(e) => {
@@ -14,7 +15,8 @@ export default function NewPost() {
     const newPost = {
       username: user.username,
       title,
-      desc
+      desc,
+      category
     };
     if(file) {
       const data = new FormData();

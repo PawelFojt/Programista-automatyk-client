@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import styles from './TopBar.module.css';
 import MainMenu from '../../UI/MainMenu/MainMenu';
 import SearchBar from '../../UI/SearchBar/SearchBar';
@@ -10,6 +10,7 @@ import { Link } from 'react-router-dom';
 export default function TopBar(props) {
   const {user} = useContext(Context);
   const PF ="/images/";
+  
   return (
     <>
       <div className={styles.topBar}>
@@ -23,10 +24,14 @@ export default function TopBar(props) {
           <div className={styles.profileAndSearch}>
             {user && (
               <Link to="/settings">
-                <img 
+                {user.profilePic ? (
+                  <img 
                   className={styles.img}
                   src={PF+user.profilePic} 
                   alt="profile" />
+                ) : (
+                  <a href="https://www.instagram.com/pawelfojt/" className={styles.icon}><i className='fa-regular fa-user'></i></a>
+                )}
               </Link>
             )}
             <SearchBar />

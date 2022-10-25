@@ -46,3 +46,11 @@
   align-items: center;
   justify-content: center;
 }
+
+.icon {
+  font-size: 2rem;
+  margin-right: 1%;
+  color: var(--color-dark);
+  cursor: pointer;
+  transition: all 0.3s;
+}
