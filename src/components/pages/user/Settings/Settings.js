@@ -1,24 +1,37 @@
 import axios from 'axios';
 import React, { useContext, useState } from 'react';
 import { Context } from '../../../../context/Context';
+import PasswordAndConfirmPasswordValidation from '../Register/Password/PasswordAndConfirmPasswordValidation';
 import styles from './Settings.module.css';
 
 export default function Settings() {
   const {user, dispatch} = useContext(Context);
   const [file, setFile] = useState(null);
-  const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
+  const [passwordInput, setPasswordInput]= useState({
+    password:'',
+    confirmPassword:''
+})
+
   const [password, setPassword] = useState("");
   const [success, setSuccess] = useState(null);
   const PF = "/images/";
+
+  const handlePasswordChange =(e)=>{
+    const passwordInputValue = e.target.value.trim();
+    const passwordInputFieldName = e.target.name;
+    const NewPasswordInput = {...passwordInput,[passwordInputFieldName]:passwordInputValue};
+    setPasswordInput(NewPasswordInput);
+    setPassword(NewPasswordInput.password);
+}
   
   const handleSubmit = async(e) => {
     e.preventDefault();
+    console.log(user._id);
     dispatch({type:"UPDATE_START"});
     const updatedUser = {
       userId: user._id,
-      username,
-      email,
+      username: user.username,
+      email: user.email,
       password
     };
     if(file) {
@@ -39,6 +52,8 @@ export default function Settings() {
       dispatch({type:"UPDATE_SUCCESS", payload: res.data})
     } catch (err) {
       console.log(err);
+      console.log(user._id);
+
       setSuccess(false);
       dispatch({type:"UPDATE_FAILURE"});
     }
@@ -50,7 +65,6 @@ export default function Settings() {
       dispatch({type: "LOGOUT"});
       window.location.replace("/");
     } catch(err) {
-      console.log(user._id);
       console.log(err);
     }
   };
@@ -69,10 +83,10 @@ export default function Settings() {
         <form className={styles.form} onSubmit={handleSubmit}>
           <label>Zdjęcie profilowe</label>
           <div className={styles.img}>
-            <img
+            {file && (<img
               src={file ? URL.createObjectURL(file) : PF+user.profilePic}
               alt="zdjęcie profilowe"
-            />
+            />)}
             <label htmlFor="fileInput">
               <i className={`${styles.userIcon} fa-solid fa-user`}></i>
             </label>
@@ -83,23 +97,11 @@ export default function Settings() {
               onChange={(e) => setFile(e.target.files[0])}
             />
           </div>
-          <label>Nazwa użytkownika</label>
-          <input 
-            type="text" 
-            placeholder={user.username}
-            onChange={e=>setUsername(e.target.value)}
-          />
-          <label>Adres e-mail</label>
-          <input 
-            type="email" 
-            placeholder={user.email}
-            onChange={e=>setEmail(e.target.value)}
-          />
-          <label>Hasło</label>
-          <input 
-            type="password"
-            onChange={e=>setPassword(e.target.value)}
-          />
+          <PasswordAndConfirmPasswordValidation
+           passwordInput={passwordInput} 
+           handlePasswordChange={handlePasswordChange}
+           hideButton={true}
+           />
           <button className={styles.button} type="submit">Aktualizuj</button>
           {success && <span>Zaktualizowano pomyślnie!</span>}
         </form>

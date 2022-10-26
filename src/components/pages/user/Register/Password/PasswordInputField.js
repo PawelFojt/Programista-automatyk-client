@@ -4,7 +4,15 @@ function PasswordInputField({handleValidation, handlePasswordChange, passwordVal
   return (
       <>
   <div className={styles.password}>
-      <input type="password" value={passwordValue}  onChange={handlePasswordChange} onKeyUp={handleValidation} name="password" placeholder="wpisz hasło" className="form-control" />
+      <input 
+        type="password"
+        value={passwordValue}  
+        onChange={handlePasswordChange} 
+        onKeyUp={handleValidation} 
+        name="password" 
+        autoComplete="new-password"
+        placeholder="wpisz hasło" 
+        className="form-control" />
       <p className={styles.warning}>{passwordError}</p>
  </div>
         

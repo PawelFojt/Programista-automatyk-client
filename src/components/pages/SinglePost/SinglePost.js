@@ -44,7 +44,6 @@ export default function SinglePost() {
       });
       setUpdateMode(false);
     } catch(err) {
-      console.log(user.username);
       console.log(err);
     }
   }
@@ -68,7 +67,8 @@ export default function SinglePost() {
         ) : (
           <div className={styles.flexContainer}>
             <h1 className={styles.title}>{title}</h1>
-            {post.username === user.username && (
+
+             {user && post.username === user.username && (
               <>
                 <i className={`${styles.icon} fa-solid fa-pencil`} onClick={()=>setUpdateMode(true)}></i>
                 <i className={`${styles.icon} fa-solid fa-trash-can` } onClick={handleDelete}></i>

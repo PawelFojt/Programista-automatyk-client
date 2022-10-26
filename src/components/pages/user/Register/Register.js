@@ -53,6 +53,7 @@ useEffect(() => {
         <input 
           type='text'
           placeholder='wpisz nazwę użytkownika'
+          autoComplete='username'
           onChange={e => setUsername(e.target.value)}
         />
         {usernameErr && 
@@ -62,6 +63,7 @@ useEffect(() => {
         <input 
           type='text' 
           placeholder='wpisz adres email' 
+          autoComplete='email'
           onChange={e => setEmail(e.target.value)}
         />
         {emailErr && 

@@ -4,7 +4,7 @@ import ConfirmPasswordInputField from "./ConfirmPasswordInputField";
 import styles from './Password.module.css'
 
 
-function PasswordAndConfirmPasswordValidation({passwordInput, handlePasswordChange, formErr}){
+function PasswordAndConfirmPasswordValidation({passwordInput, handlePasswordChange, formErr, hideButton}){
 const [passwordError, setPasswordErr] = useState("");
 const [confirmPasswordError, setConfirmPasswordError] = useState("");
 const [passwordCorrect, setPasswordCorrect] = useState(false);
@@ -22,17 +22,17 @@ const handleValidation= (e)=>{
     const passwordInputFieldName = e.target.name;
         //for password 
 if(passwordInputFieldName==='password'){
-    const uppercaseRegExp   = /(?=.*?[A-Z])/;
-    const lowercaseRegExp   = /(?=.*?[a-z])/;
-    const digitsRegExp      = /(?=.*?[0-9])/;
-    const specialCharRegExp = /(?=.*?[#?!@$%^&*-])/;
-    const minLengthRegExp   = /.{8,}/;
-    const passwordLength =      passwordInputValue.length;
-    const uppercasePassword =   uppercaseRegExp.test(passwordInputValue);
-    const lowercasePassword =   lowercaseRegExp.test(passwordInputValue);
-    const digitsPassword =      digitsRegExp.test(passwordInputValue);
+    const uppercaseRegExp     = /(?=.*?[A-Z])/;
+    const lowercaseRegExp     = /(?=.*?[a-z])/;
+    const digitsRegExp        = /(?=.*?[0-9])/;
+    const specialCharRegExp   = /(?=.*?[#?!@$%^&*-])/;
+    const minLengthRegExp     = /.{8,}/;
+    const passwordLength      = passwordInputValue.length;
+    const uppercasePassword   = uppercaseRegExp.test(passwordInputValue);
+    const lowercasePassword   = lowercaseRegExp.test(passwordInputValue);
+    const digitsPassword      = digitsRegExp.test(passwordInputValue);
     const specialCharPassword = specialCharRegExp.test(passwordInputValue);
-    const minLengthPassword =   minLengthRegExp.test(passwordInputValue);
+    const minLengthPassword   = minLengthRegExp.test(passwordInputValue);
     let errMsg ="";
     if(passwordLength===0){
             errMsg="Pole nie może być puste";
@@ -79,12 +79,12 @@ if(passwordInputFieldName==='password'){
         handleValidation={handleValidation} 
         confirmPasswordValue={passwordInput.confirmPassword} 
         confirmPasswordError={confirmPasswordError}/>
-        <button 
+        {!hideButton && (<button 
           className={`${styles.button} ${!passwordCorrect && styles.hide}`}
           type="submit"
         >
             Zarejestruj
-        </button>
+        </button>)}
      </div>
     )
 }
