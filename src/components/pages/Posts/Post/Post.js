@@ -2,33 +2,33 @@ import React from 'react';
 import styles from './Post.module.css';
 import {Link} from 'react-router-dom';
 
-export default function Post(props) {
+export default function Post({post}) {
   const PF ="/images/";
-  console.log(props)
   return (
     <div className={styles.post}>
-      {props.post.photo && (
+      <Link to={`/post/${post._id}`} className={styles.link}>
+      {post.photo && (
       <img 
         className={styles.img}
-        src={PF + props.post.photo}
+        src={PF + post.photo}
         alt=""
       />
       )}
       <div className={styles.info}>
         <div className={styles.categories}>
-          {props.post.categories.map(c => (
-            <span className={styles.category}>{c.name}</span>
+          {post.categories.map(c => (
+            <span key={post._id} className={styles.category}><i>{c}</i></span>
           ))}
         </div>
-        <Link to={`/post/${props.post._id}`} className={styles.link}>
           <span className={styles.title}>
-            {props.post.title}
+            {post.title}
           </span>
-        </Link>
-        <hr/>
-        <span className={styles.date}>{new Date (props.post.createdAt).toDateString()}</span>
+        <span className={styles.date}>{new Date (post.createdAt).toDateString()}</span>
       </div>
-      <p className={styles.desc}>{props.post.desc}</p>
+      
+      <div className={styles.desc} dangerouslySetInnerHTML={{ __html: post.desc}}></div>
+      </Link>
     </div>
+    
   )
 }

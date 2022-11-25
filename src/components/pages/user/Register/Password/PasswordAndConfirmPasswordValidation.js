@@ -4,7 +4,7 @@ import ConfirmPasswordInputField from "./ConfirmPasswordInputField";
 import styles from './Password.module.css'
 
 
-function PasswordAndConfirmPasswordValidation({passwordInput, handlePasswordChange, formErr, hideButton}){
+function PasswordAndConfirmPasswordValidation({passwordInput, handlePasswordChange, formErr, buttonText}){
 const [passwordError, setPasswordErr] = useState("");
 const [confirmPasswordError, setConfirmPasswordError] = useState("");
 const [passwordCorrect, setPasswordCorrect] = useState(false);
@@ -21,7 +21,7 @@ const handleValidation= (e)=>{
     const passwordInputValue = e.target.value.trim();
     const passwordInputFieldName = e.target.name;
         //for password 
-if(passwordInputFieldName==='password'){
+  if(passwordInputFieldName==='password'){
     const uppercaseRegExp     = /(?=.*?[A-Z])/;
     const lowercaseRegExp     = /(?=.*?[a-z])/;
     const digitsRegExp        = /(?=.*?[0-9])/;
@@ -50,42 +50,39 @@ if(passwordInputFieldName==='password'){
         errMsg="";
     }
     setPasswordErr(errMsg);
-    }
+  }
     // for confirm password
-    if(passwordInputFieldName=== "confirmPassword" || (passwordInputFieldName==="password" && passwordInput.confirmPassword.length>0) ){
-            
-        if(passwordInput.confirmPassword!==passwordInput.password)
-        {
-        setConfirmPasswordError("Hasło musi być takie same");
-        }else{
-        setConfirmPasswordError("");
-        }
-        
+  if(passwordInputFieldName=== "confirmPassword" || (passwordInputFieldName==="password" && passwordInput.confirmPassword.length>0) ){
+          
+      if(passwordInput.confirmPassword!==passwordInput.password)
+      {
+      setConfirmPasswordError("Hasło musi być takie same");
+      }else{
+      setConfirmPasswordError("");
+      } 
     }
-
-
-}
-    return(
-     <div className={styles.passwordWrapper}>
-        <label>Hasło</label>
-        <PasswordInputField 
-        handlePasswordChange={handlePasswordChange} 
-        handleValidation={handleValidation} 
-        passwordValue={passwordInput.password} 
-        passwordError={passwordError}/>
-        <label>Powtórz Hasło</label>
-        <ConfirmPasswordInputField 
-        handlePasswordChange={handlePasswordChange} 
-        handleValidation={handleValidation} 
-        confirmPasswordValue={passwordInput.confirmPassword} 
-        confirmPasswordError={confirmPasswordError}/>
-        {!hideButton && (<button 
-          className={`${styles.button} ${!passwordCorrect && styles.hide}`}
-          type="submit"
-        >
-            Zarejestruj
-        </button>)}
-     </div>
-    )
+  }
+  return(
+    <div className={styles.passwordWrapper}>
+      <label>Hasło</label>
+      <PasswordInputField 
+      handlePasswordChange={handlePasswordChange} 
+      handleValidation={handleValidation} 
+      passwordValue={passwordInput.password} 
+      passwordError={passwordError}/>
+      <label>Powtórz Hasło</label>
+      <ConfirmPasswordInputField 
+      handlePasswordChange={handlePasswordChange} 
+      handleValidation={handleValidation} 
+      confirmPasswordValue={passwordInput.confirmPassword} 
+      confirmPasswordError={confirmPasswordError}/>
+      <button 
+        className={`${styles.button} ${!passwordCorrect && styles.hide}`}
+        type="submit"
+      >
+          {buttonText}
+      </button>
+    </div>
+  )
 }
 export default PasswordAndConfirmPasswordValidation;

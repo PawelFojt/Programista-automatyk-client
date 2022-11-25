@@ -5,7 +5,6 @@ import {
   Routes
 } from "react-router-dom";
 import { Context } from './context/Context';
-import SideBar from './components/Layout/SideBar/SideBar';
 import TopBar from './components/Layout/TopBar/TopBar';
 import Layout from './components/Layout/Layout';
 import Footer from './components/Layout/Footer/Footer';
@@ -17,7 +16,7 @@ import Settings from './components/pages/user/Settings/Settings';
 import Login from './components/pages/user/Login/Login';
 import Register from './components/pages/user/Register/Register';
 import Contact from './components/pages/Contact/Contact';
-import './vars.css';
+import './globalStyles.css';
 
 
 
@@ -28,7 +27,7 @@ function App() {
   }
   const {user} = useContext(Context);
   const topBar = <TopBar mode = {mode} onSwitch = {() => {modeHandler()}}/>
-    const content = (
+  const content = (
     <Routes>
       <Route path="/contact" element={<Contact />} />
       <Route path="/posts" element={<Posts />} />
@@ -39,9 +38,8 @@ function App() {
       <Route path="/register" element={user ? <Home /> : <Register />} />
       <Route path="/" element={<Home />} />
     </Routes>
-    );
- 
-  const sideBar = <SideBar />
+  );
+
   const footer = <Footer />
       
 
@@ -52,7 +50,6 @@ function App() {
           <Layout
           topBar = {topBar}
           content = {content}
-          sideBar = {sideBar}
           footer = {footer} 
           />
         </div>

@@ -26,7 +26,6 @@ export default function Settings() {
   
   const handleSubmit = async(e) => {
     e.preventDefault();
-    console.log(user._id);
     dispatch({type:"UPDATE_START"});
     const updatedUser = {
       userId: user._id,
@@ -71,15 +70,16 @@ export default function Settings() {
 
 
   return (
-    <div className={styles.settings}>
-      <div className={styles.title}>
-        <span className={styles.updateTitle}>
-          Uaktualnij swoje konto
-        </span>
-        <span onClick={handleDelete} className={styles.deleteTitle}>
-          Usuń konto
-        </span>
-      </div>
+    <div className={styles.container}>
+      <div className={styles.settings}>
+        <div className={styles.title}>
+          <span className={styles.updateTitle}>
+            Uaktualnij swoje konto
+          </span>
+          <span onClick={handleDelete} className={styles.deleteTitle}>
+          <i className={`${styles.userIcon} fa-solid fa-trash`}></i>
+          </span>
+        </div>
         <form className={styles.form} onSubmit={handleSubmit}>
           <label>Zdjęcie profilowe</label>
           <div className={styles.img}>
@@ -93,18 +93,19 @@ export default function Settings() {
             <input 
               style={{display:"none"}}
               type="file" 
+              name="file"
               id="fileInput"
               onChange={(e) => setFile(e.target.files[0])}
             />
           </div>
           <PasswordAndConfirmPasswordValidation
-           passwordInput={passwordInput} 
-           handlePasswordChange={handlePasswordChange}
-           hideButton={true}
-           />
-          <button className={styles.button} type="submit">Aktualizuj</button>
-          {success && <span>Zaktualizowano pomyślnie!</span>}
+            passwordInput={passwordInput} 
+            handlePasswordChange={handlePasswordChange}
+            buttonText="Aktualizuj"
+            />
+          {success ? <span>Zaktualizowano pomyślnie!</span> : null}
         </form>
+      </div>
     </div>
   )
 }

@@ -2,27 +2,26 @@
   width: 100%;
   position: sticky;
   top: 0;
-  z-index: 9999;
-  background-color: var(--color-white);
-  min-height: 12vh;
-  padding-top: 0.5rem;
+  z-index: 1000;
+  background-color: var(--bg-white);
+  padding: 0.5rem;
 }
 .main {
   display: flex;
   align-items: center;
 }
+
 .nav {
-  padding-bottom: 1rem;
-  background-color: var(--color-white);
-  box-shadow: 0 0 1rem 0;
+  flex: 8;
+  background-color: var(--bg-white);
 }
 
 .mode {
-  flex:1;
+  flex:0.5;
   font-size: 2rem;
   border: none;
   cursor: pointer;
-  color: var(--color-dark);
+  color: var(--color-white);
   background-color: inherit;
   transition: all 0.3s;
 }
@@ -31,6 +30,12 @@
   color:var(--color-red);
 }
 
+.profile {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 .img {
   width: 50px;
   height: 50px;
@@ -40,17 +45,32 @@
 }
 
 
-.profileAndSearch {
+.search {
   flex: 3;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
 }
 
 .icon {
   font-size: 2rem;
   margin-right: 1%;
-  color: var(--color-dark);
+  color: var(--color-white);
   cursor: pointer;
   transition: all 0.3s;
+}
+
+
+@media only screen and (max-width: 768px) {
+  .search {
+    display: none;
+    flex:0;
+  }
+  .nav {
+    flex:0;
+  }
+  .mode {
+    flex:2;
+  }
+
 }

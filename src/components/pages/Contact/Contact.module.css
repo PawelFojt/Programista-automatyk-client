@@ -1,3 +1,13 @@
-.info {
+.contact {
+  max-width: 90rem;
+  margin:auto;
+}
+.social {
   margin-top: 1rem;
+}
+
+.box {
+  display: flex;
+  margin: 2rem;
+  font-size: 2rem;
 }

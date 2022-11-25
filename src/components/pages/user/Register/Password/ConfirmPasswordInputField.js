@@ -10,7 +10,6 @@ function ConfirmPasswordInputField({handleValidation, handlePasswordChange, conf
         onChange={handlePasswordChange} 
         onKeyUp={handleValidation} 
         name="confirmPassword" 
-        autoComplete="new-password"
         placeholder="powtórz hasło" 
         className="form-control" />
       <p className={styles.warning}>{confirmPasswordError}</p>

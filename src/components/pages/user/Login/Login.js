@@ -8,7 +8,7 @@ export default function Login() {
 
   const userRef = useRef();
   const passwordRef = useRef();
-  const {dispatch, isFetching} = useContext(Context);
+  const {dispatch, isFetching, error} = useContext(Context);
   
   
   const handleSubmit = async(e) => {
@@ -28,16 +28,18 @@ export default function Login() {
   return (
     <div className={styles.login}>
       <h1 className={styles.header}>Logowanie</h1>
-      <form className={styles.form} onSubmit={handleSubmit}>
+      <form className={styles.form} onSubmit={handleSubmit} >
         <label>Nazwa użytkownika</label>
         <input 
           type='text' 
+          name='username'
           placeholder='wpisz nazwę użytkownika' 
           ref={userRef}
         />
         <label>Hasło</label>
         <input 
           type='password' 
+          name='current-password'
           placeholder='wpisz hasło' 
           ref={passwordRef}
         />
@@ -48,10 +50,11 @@ export default function Login() {
         >
           Zaloguj
         </button>
+        {error && (<p className={styles.error}>Nieprawidłowe hasło lub użytkownik nie istnieje</p>)}
       </form>
-      <label>Nie masz konta? Zarejestruj się!</label>
+      <label htmlFor='register'>Nie masz konta? Zarejestruj się!</label>
       <Link to="../register" >
-        <button className={styles.button}>Rejestracja</button>
+        <button id='register' className={styles.button}>Rejestracja</button>
       </Link>
     </div>
   )

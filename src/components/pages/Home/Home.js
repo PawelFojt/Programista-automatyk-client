@@ -5,7 +5,7 @@ import styles from './Home.module.css';
 export default function Home() {
   return (
     <div className={styles.home}>
-        <h1>Automatyczny blog</h1>
+        <h1 className={styles.header}>Automatyczny blog</h1>
         <div className={styles.container}>
           <div  className = {styles.item}>
             <Link to="/posts">

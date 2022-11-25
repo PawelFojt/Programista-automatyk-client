@@ -17,7 +17,7 @@
 }
 
 .center:hover {
-  background-color: var(--color-dark);
+  background-color: var(--bg-dark);
   width: 23.68%;
   height: 23.68%;
   top: 38.16%;
@@ -31,6 +31,7 @@
   height: 39.47%;
   top: 30.26%;
   left: 0;
+  color:black;
 }
 
 .ring2 {
@@ -63,7 +64,7 @@
 
 .dot1 {
   position: absolute;
-  background-color: var(--color-dark);
+  background-color: var(--bg-dark);
   width: 3.95%;
   height: 3.95%;
   border-radius: 50%;
@@ -84,7 +85,7 @@
 
 .dot2 {
   position: absolute;
-  background-color: var(--color-dark);
+  background-color: var(--bg-dark);
   width: 3.95%;
   height: 3.95%;
   border-radius: 50%;
@@ -105,7 +106,7 @@
 
 .dot3 {
   position: absolute;
-  background-color: var(--color-dark);
+  background-color: var(--bg-dark);
   width: 3.95%;
   height: 3.95%;
   border-radius: 50%;
@@ -126,7 +127,7 @@
 
 .dot4 {
   position: absolute;
-  background-color: var(--color-dark);
+  background-color: var(--bg-dark);
   width: 3.95%;
   height: 3.95%;
   border-radius: 50%;
@@ -144,3 +145,22 @@
   top: 7.11%;
   left: 58.42%;
 }
+
+.big {
+  border:solid 0.3vw var(--color-red);
+}
+
+.mid {
+  border:solid 0.2vw var(--color-red);
+}
+
+.small {
+  border:solid 0.1vw var(--color-red);
+}
+
+@media only screen and (max-width: 1024px) {
+  .atom {
+    display: none;
+  }
+}
+

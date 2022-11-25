@@ -1,6 +1,7 @@
 .post {
-  width: 30%;
-  margin: 0px 25px 40px 25px;
+  min-width: 17em;
+  max-width: 33%;
+  padding: 2%;
 }
 
 .img {
@@ -56,4 +57,16 @@
 
 .link {
   text-decoration: none;
+}
+
+@media only screen and (max-width: 1024px) {
+  .post {
+    max-width: 50%;
+  }
+}
+
+@media only screen and (max-width: 550px) {
+  .post {
+    max-width: 100%;
+  }
 }

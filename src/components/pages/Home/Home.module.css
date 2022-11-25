@@ -7,14 +7,18 @@ h1 {
   text-align: center;
   margin-bottom: 3rem;
 }
-
+.header {
+  background: var(--color-red);
+  color: white;
+  padding: 4rem 0;
+}
 .container {
   display: flex;
   gap: 5rem;
+  justify-content: center;
 }
 
 .item {
-  flex: 6;
   text-align: center;
 }
 
@@ -29,4 +33,29 @@ h1 {
 
 .icon:hover {
   color: var(--color-red);
+}
+
+@media only screen and (max-width: 1024px) {
+  h1 {
+    font-size:4rem;
+  }
+  .icon {
+    font-size: 9rem;
+  }
+}
+@media only screen and (max-width: 768px) {
+  h1 {
+    font-size:3rem;
+  }
+  .icon {
+    font-size: 8rem;
+  }
+}
+@media only screen and (max-width: 480px) {
+  h1 {
+    font-size:2rem;
+  }
+  .icon {
+    font-size: 7rem;
+  }
 }

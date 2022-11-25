@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styles from'./Posts.module.css';
 import Post from './Post/Post';
 import axios from 'axios';
+import SideBar from '../../Layout/SideBar/SideBar';
 import { useLocation } from 'react-router-dom';
 
 export default function Posts() {
@@ -18,16 +19,21 @@ export default function Posts() {
     }
     fetchPosts();
   }, [search, loading])
+
   return (
-    <div className={styles.posts}>
-      {loading ? (
-        <p>ładowanie danych</p>
-        ) : (
-          posts.map((p) => (
-        <Post key={p._id} post={p} />
-      ))
-      )}
-     
+    <div className={styles.container}>
+      <div className={styles.posts}>
+        {loading ? (
+            <div className={styles.loading}><div></div><div></div><div></div><div></div></div>
+          ) : (
+            posts.map((p) => (
+              <Post key={p._id} post={p} />
+            ))
+          )
+        }
+        
+      </div>
+      <SideBar />
     </div>
   );
 }

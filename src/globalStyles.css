@@ -1,0 +1,80 @@
+
+:root {
+  --color-dark: #000000;
+  --color-white: #d3dbeb;
+  --color-red: #c70000;
+  --bg-dark: #060111;
+  --bg-white: #150435;
+  --button: #4d0202;
+  
+  --color-lightgrey: rgb(180, 180, 180);
+  --font-header: 'Sarpanch', serif;
+  --font-text: 'Ubuntu', sans-serif;
+  font-family: var(--font-text);
+}
+
+.dark-mode {
+  --color-dark: #ffffff;
+  --color-white: #000000;
+  --bg-dark: #fffff8;
+  --bg-white: #f5f2e5;
+  --button: #ffa8a8;
+  
+}
+
+/* Set content for font-families */
+.ql-font-arial,
+.ql-font span[data-value="arial"]::before {
+  font-family: Arial, sans-serif;
+}
+.ql-font-comic-sans,
+.ql-font span[data-value="comic-sans"]::before {
+  font-family: "Comic Sans MS", cursive, sans-serif;
+}
+.ql-font-courier-new,
+.ql-font span[data-value="courier-new"]::before {
+  font-family: "Courier New";
+}
+.ql-font-georgia,
+.ql-font span[data-value="georgia"]::before {
+  font-family: Georgia, serif;
+}
+.ql-font-helvetica,
+.ql-font span[data-value="helvetica"]::before {
+  font-family: Helvetica, sans-serif;
+}
+.ql-font-Inter,
+.ql-font span[data-value="Inter"]::before {
+  font-family: 'Inter', sans-serif;
+}
+.ql-font-lucida,
+.ql-font span[data-value="lucida"]::before {
+  font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+}
+
+/* Set content for sizes */
+.ql-size-extra-small,
+.ql-size span[data-value="extra-small"]::before {
+  font-size: 13px ;
+}
+.ql-size-small,
+.ql-size span[data-value="small"]::before {
+  font-size: 14px ;
+}
+.ql-size-medium,
+.ql-size span[data-value="medium"]::before {
+  font-size: 18px ;
+}
+.ql-size-large,
+.ql-size span[data-value="large"]::before {
+  font-size: 20px ;
+}
+
+.ql-editor {
+  min-height: 50vh; 
+  font-size: 16px;
+}
+.ql-snow .ql-tooltip.ql-flip {
+  width: auto;
+  white-space: normal;
+} 

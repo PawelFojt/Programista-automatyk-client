@@ -3,13 +3,13 @@ import styles from './MainMenu.module.css';
 import {Link} from 'react-router-dom';
 import { Context } from '../../../context/Context';
 
-export default function MainMenu() {
+export default function MainMenu({menuButton, onClick}) {
   const {user, dispatch} = useContext(Context);
   const handleLogout = () => {
     dispatch({type:"LOGOUT"})
   }
   return (
-    <div className={styles.mainMenu}>
+    <div onClick={() => {onClick()}} className={`${styles.mainMenu} ${menuButton && styles.menuButton}`}>
         <ul className={styles.list}>
           <Link to="/" className={styles.item}>STRONA GŁÓWNA</Link >
           <Link to="/posts" className={styles.item}>BAZA WIEDZY</Link >

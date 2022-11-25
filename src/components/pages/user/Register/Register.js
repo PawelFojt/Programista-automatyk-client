@@ -53,7 +53,7 @@ useEffect(() => {
         <input 
           type='text'
           placeholder='wpisz nazwę użytkownika'
-          autoComplete='username'
+          name='username'
           onChange={e => setUsername(e.target.value)}
         />
         {usernameErr && 
@@ -63,7 +63,7 @@ useEffect(() => {
         <input 
           type='text' 
           placeholder='wpisz adres email' 
-          autoComplete='email'
+          name='email'
           onChange={e => setEmail(e.target.value)}
         />
         {emailErr && 
@@ -73,6 +73,7 @@ useEffect(() => {
           passwordInput={passwordInput} 
           handlePasswordChange={handlePasswordChange}
           formErr={usernameErr || emailErr || username.length === 0}
+          buttonText={"Zarejestruj"}
         />
         
       </form>

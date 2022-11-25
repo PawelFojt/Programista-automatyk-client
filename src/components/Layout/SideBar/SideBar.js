@@ -18,7 +18,7 @@ export default function SideBar() {
       <h2>Kategorie:</h2>
       <ul className={styles.catList}>
         {cats.map((c) => (
-          <Link key={c._id} to={`/posts/cat=${c.name}`} className={styles.link}>
+          <Link key={c._id} to={`/posts/?cat=${c.name}`} className={styles.link}>
             <li className={styles.item} >{c.name}</li>
           </Link>
         ))}

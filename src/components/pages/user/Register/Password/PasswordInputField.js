@@ -10,7 +10,6 @@ function PasswordInputField({handleValidation, handlePasswordChange, passwordVal
         onChange={handlePasswordChange} 
         onKeyUp={handleValidation} 
         name="password" 
-        autoComplete="new-password"
         placeholder="wpisz hasło" 
         className="form-control" />
       <p className={styles.warning}>{passwordError}</p>
