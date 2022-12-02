@@ -1,5 +1,6 @@
 .sideBar {
   flex: 2;
+  min-height: 100%;
   padding-top: 1em;
   padding-left: 1em;
   color: var(--color-white);

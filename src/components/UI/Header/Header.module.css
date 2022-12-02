@@ -1,4 +1,6 @@
-
+a {
+  text-decoration: none;
+}
 
 .titles {
   display: flex;
@@ -7,11 +9,13 @@
   color: var(--color-red);
   font-family: var(--font-header);
   font-weight: 400;
+  
 }
 
 .title {
   font-size: calc(0.15rem + 1vw);
   font-weight: 600;
+  
 }
 
 .center {

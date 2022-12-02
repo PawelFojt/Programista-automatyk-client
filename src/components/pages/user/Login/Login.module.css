@@ -37,30 +37,6 @@
   border-radius: 5px;
 }
 
-.button {
-  width: 10rem;
-  height: 2rem;
-  font-size: 1.2rem;
-  border: none;
-  background-color: var(--bg-white);
-  color: var(--color-white);
-  border-radius: 5px;
-  transition: all 0.3s;
-  cursor: pointer;
-  margin:auto;
-  border: 1px solid var(--color-lightgrey);
-}
-
-.button:hover {
-  background-color: var(--color-red);
-  color: var(--color-dark);
-}
-
-.button:disabled {
-  background-color: var(--color-lightgrey);
-  cursor: progress;
-}
-
 .error {
   margin-top: 1rem;
   color: var(--color-red);

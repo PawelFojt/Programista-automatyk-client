@@ -9,14 +9,21 @@ import 'react-quill/dist/quill.snow.css';
 
 
 export default function SinglePost() {
+
+  //local consts
+
   const location = useLocation()
   const path = location.pathname.split("/")[2];
   const [post, setPost] = useState({});
   const {user} = useContext(Context);
   const [title, setTitle] = useState("");
   const [desc, setDesc] = useState("");
+  const [file, setFile] = useState(null);
   const [updateMode, setUpdateMode] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const PF = "/images/";
 
+  //download single post from MongoDB
   useEffect(() => {
     const getPost = async () => {
       const res = await axios.get("/posts/" + path);
@@ -25,10 +32,12 @@ export default function SinglePost() {
       setDesc(res.data.desc);
     };
     getPost()
+    setLoading(false);
   }, [path, updateMode])
 
-  const PF = "/images/";
+  //delete single post
   const handleDelete = async() => {
+    setLoading(true);
     try {
       await axios.delete("/posts/" + path, {
         data: {username:user.username},
@@ -39,42 +48,92 @@ export default function SinglePost() {
     }
   };
   
-  
-  console.log(desc);
+
+  //update post
   const handleUpdate = async() => {
+    
+    const updatedPost = {
+      username:user.username,
+      title, 
+      desc
+    }
+    if(file) {
+      const data = new FormData();
+      const filename = Date.now() + file.name;
+      data.append("name", filename);
+      data.append("file", file);
+      updatedPost.photo = filename;
+      try {
+        await axios.post("/upload", data);
+        setLoading(true);
+      } catch(err) {
+        console.log(err)
+      }
+    }
     try {
-      await axios.patch("/posts/" + path, {
-        username:user.username,
-        title, 
-        desc
-      });
+      await axios.patch("/posts/" + path, updatedPost);
+      
       setUpdateMode(false);
     } catch(err) {
       console.log(err);
     }
+    
   }
 
-  const onDescChange = (value) => {
+  //handle desc change from quill text editor
+  const handleDescChange = (value) => {
     setDesc(value);
   }
   return (
-    <div className={styles.singlePost}>
-      <div className={styles.imgContainer}>
-        {post.photo ? (
+    <>
+    {loading ? (
+      <div className="loading"><div></div><div></div><div></div><div></div></div>
+    ) : (
+    <article className={styles.singlePost}>
+      
+      <label htmlFor="fileInput" className={styles.imgContainer}>
+        {file ? (
           <img 
             className={styles.img}
-            src={PF + post.photo}
-            alt="Post img"
+            src={URL.createObjectURL(file)}
+            alt="Post"
           />
-        ) : null}
-      </div>
+          ) : (
+          <>
+            {post.photo ? (
+              <img 
+                className={styles.img}
+                src={PF + post.photo}
+                alt="Post"
+              />
+              ) : (
+              <>
+                {updateMode ? (<i className={`${styles.imgIcon} fa-solid fa-image`}/>) : null}
+              </>
+              )
+            }
+          </>
+          )
+        }
+        
+      </label>
+     
       {updateMode ? (
-        <input 
-          autoFocus 
-          type="text" 
-          value={title} 
-          className={styles.title} 
-          onChange={(e) => setTitle(e.target.value)}/> 
+        <>
+          
+          <input 
+            style={{display:"none"}}
+            type="file"
+            accept="image/png, image/jpeg"
+            id="fileInput"
+            onChange={(e) => setFile(e.target.files[0])}/>
+          <input 
+            autoFocus 
+            type="text" 
+            value={title} 
+            className={styles.title} 
+            onChange={(e) => setTitle(e.target.value)}/> 
+        </>
       ) : (
         <div className={styles.flexContainer}>
           <h1 className={styles.title}>{title}</h1>
@@ -104,29 +163,32 @@ export default function SinglePost() {
           {new Date(post.createdAt).toDateString()}
         </span>
       </div>
-      <hr/>
+      
       {updateMode ? (
-         <div className={styles.container}>
+         <div className={styles.editor}>
          <EditorToolbar toolbarId={'t1'}/>
          <ReactQuill
                theme="snow"
                value={desc}
-               onChange={onDescChange}
+               onChange={handleDescChange}
                placeholder={"Napisz coś..."}
                modules={modules('t1')}
                formats={formats}
              />
          </div>
       ) : (
-        <div className="ql-editor" dangerouslySetInnerHTML={{ __html: post.desc}}></div>
+        <div className={`ql-editor ${styles.editor}`} dangerouslySetInnerHTML={{ __html: post.desc}}></div>
       )}
       {updateMode && (
         <button 
-          className={styles.button} 
+          className="button" 
           onClick={handleUpdate}>
             Aktualizuj!
         </button>
       )}
-    </div>
+      
+    </article>
+    )}
+    </>
   )
 }

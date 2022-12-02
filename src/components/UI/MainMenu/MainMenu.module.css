@@ -24,6 +24,28 @@
   margin-right: 0.9rem;
 }
 
+.active::before {
+  content: "";
+  position: absolute;
+  background-color: var(--color-red);
+  height: 2px;
+  width: 100%;
+  left: 0;
+  bottom: -5px;
+  transition: 0.3s;
+}
+
+.inActive::before {
+  content: "";
+  position: absolute;
+  background-color: var(--color-red);
+  height: 2px;
+  width: 0;
+  left: 50%;
+  bottom: -5px;
+  transition: 0.3s;
+}
+
 .item:hover {
   color: var(--color-red);
 }

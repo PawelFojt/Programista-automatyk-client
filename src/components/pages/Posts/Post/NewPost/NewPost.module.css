@@ -3,10 +3,11 @@
  margin:auto;
  padding: 2vw 10vw;
 }
+
 .imgContainer {
-  display: flex;
-  justify-content: center;
+  margin:auto;
 }
+
 .img {
   max-width: 100%;
   max-height: 30rem;
@@ -20,21 +21,25 @@
   flex-direction: column;
 }
 
-.icon {
-  font-size: 1.5rem;
-  cursor: pointer;
-  transition: all 0.3s;
-}
 
-.container {
+.formContainer {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
 }
 
+.fileInput {
+  background-color: red;
+  border-radius: 20px;
+  padding: 0.5em;
+  cursor: pointer;
+}
+
+
 .catSelect {
   background-color: inherit;
   border: none;
+  color: var(--color-white);
   font-size: 1.2rem;
   
 }
@@ -43,6 +48,11 @@
   background-color: var(--bg-white);
   font-size: 1.2rem;
   
+}
+
+.icon {
+  font-size: 4rem;
+  cursor: pointer;
 }
 
 .icon:hover {
@@ -80,22 +90,6 @@
   outline: none;
 }
 
-.button {
-  width: 10rem;
-  height: 2rem;
-  font-size: 1.2rem;
-  border: none;
-  background-color: var(--bg-white);
-  color: var(--color-white);
-  border-radius: 5px;
-  transition: all 0.1s;
-  cursor: pointer;
-  margin:auto;
-  margin-top: 1rem;
-  border: 1px solid var(--color-lightgrey);
-}
-
-.button:hover {
-  background-color: var(--color-red);
-  color: var(--color-dark);
+.editor {
+  max-width: 75vw;
 }

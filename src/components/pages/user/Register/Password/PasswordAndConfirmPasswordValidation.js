@@ -77,8 +77,9 @@ const handleValidation= (e)=>{
       confirmPasswordValue={passwordInput.confirmPassword} 
       confirmPasswordError={confirmPasswordError}/>
       <button 
-        className={`${styles.button} ${!passwordCorrect && styles.hide}`}
+        className="button cursor__not-allowed"
         type="submit"
+        disabled={!passwordCorrect}
       >
           {buttonText}
       </button>

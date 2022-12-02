@@ -2,7 +2,6 @@ import React, { useContext, useState } from 'react';
 import styles from './TopBar.module.css';
 import MainMenu from '../../UI/MainMenu/MainMenu';
 import SearchBar from '../../UI/SearchBar/SearchBar';
-import SocialMedia from '../../UI/SocialMedia/SocialMedia';
 import Header from '../../UI/Header/Header';
 import MenuButton from '../../UI/MenuButton/MenuButton';
 import { Context } from '../../../context/Context';
@@ -23,8 +22,10 @@ export default function TopBar(props) {
           <button className={styles.mode} onClick={() => {props.onSwitch()}}>
             {props.mode === "dark-mode"? <i className="fa-solid fa-sun"></i> : <i className="fa-solid fa-moon"></i> }
           </button>
-          <Header
-            title = "Programista-Automatyk" />
+          <Link to="/">
+            <Header
+              title = "Programista-Automatyk" />
+          </Link>
           <div className={styles.search}>
             <SearchBar />
           </div>

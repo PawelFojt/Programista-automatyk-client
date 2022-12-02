@@ -5,30 +5,27 @@ import {Link} from 'react-router-dom';
 export default function Post({post}) {
   const PF ="/images/";
   return (
-    <div className={styles.post}>
-      <Link to={`/post/${post._id}`} className={styles.link}>
-      {post.photo && (
-      <img 
-        className={styles.img}
-        src={PF + post.photo}
-        alt=""
-      />
-      )}
-      <div className={styles.info}>
-        <div className={styles.categories}>
-          {post.categories.map(c => (
-            <span key={post._id} className={styles.category}><i>{c}</i></span>
-          ))}
+      <Link to={`/post/${post._id}`} className={styles.post}>
+        {post.photo && (
+        <img 
+          className={styles.img}
+          src={PF + post.photo}
+          alt=""
+        />
+        )}
+        {console.log(post)}
+        <div className={styles.info}>
+          <div className={styles.categories}>
+            {post.categories.map(c => (
+              <span key={post._id} className={styles.category}><i>{c}</i></span>
+            ))}
+          </div>
+            <span className={styles.title}>
+              {post.title}
+            </span>
+          <span className={styles.date}>{new Date (post.createdAt).toDateString()}</span>
         </div>
-          <span className={styles.title}>
-            {post.title}
-          </span>
-        <span className={styles.date}>{new Date (post.createdAt).toDateString()}</span>
-      </div>
-      
-      <div className={styles.desc} dangerouslySetInnerHTML={{ __html: post.desc}}></div>
+        <div className={styles.desc} dangerouslySetInnerHTML={{ __html: post.desc}}></div>
       </Link>
-    </div>
-    
   )
 }

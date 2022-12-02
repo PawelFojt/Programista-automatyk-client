@@ -19,8 +19,6 @@ export default function Home() {
             </Link>
             <p>Podziel się swoją wiedzą dodając nowy wpis!</p>
           </div>     
-        
-           
         </div>
     </div>
     

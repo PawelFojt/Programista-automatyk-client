@@ -24,14 +24,13 @@ export default function Posts() {
     <div className={styles.container}>
       <div className={styles.posts}>
         {loading ? (
-            <div className={styles.loading}><div></div><div></div><div></div><div></div></div>
+            <div className="loading"><div></div><div></div><div></div><div></div></div>
           ) : (
             posts.map((p) => (
               <Post key={p._id} post={p} />
             ))
           )
         }
-        
       </div>
       <SideBar />
     </div>

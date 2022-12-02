@@ -1,4 +1,4 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext, useState, useEffect} from 'react';
 import {
   BrowserRouter as Router,
   Route,
@@ -18,14 +18,20 @@ import Register from './components/pages/user/Register/Register';
 import Contact from './components/pages/Contact/Contact';
 import './globalStyles.css';
 
-
-
 function App() {
-  const [mode, setMode] = useState("dark-mode"); 
+  //mode change
+  const [mode, setMode] = useState(JSON.parse(window.localStorage.getItem('mode'))); 
+  useEffect(() => {
+    window.localStorage.setItem('mode', JSON.stringify(mode));
+  }, [mode]);
   function modeHandler() {
-    mode === "dark-mode" ? setMode("") : setMode("dark-mode");
+    mode === "dark-mode" ? setMode("c") : setMode("dark-mode");
   }
+  
+  console.log(mode);
+  //get user info
   const {user} = useContext(Context);
+  //mode change
   const topBar = <TopBar mode = {mode} onSwitch = {() => {modeHandler()}}/>
   const content = (
     <Routes>

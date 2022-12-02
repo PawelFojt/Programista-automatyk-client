@@ -44,7 +44,7 @@ export default function Login() {
           ref={passwordRef}
         />
         <button 
-          className={styles.button}
+          className="button cursor__wait"
           type="submit"
           disabled={isFetching}
         >
@@ -54,7 +54,7 @@ export default function Login() {
       </form>
       <label htmlFor='register'>Nie masz konta? Zarejestruj się!</label>
       <Link to="../register" >
-        <button id='register' className={styles.button}>Rejestracja</button>
+        <button id='register' className="button">Rejestracja</button>
       </Link>
     </div>
   )

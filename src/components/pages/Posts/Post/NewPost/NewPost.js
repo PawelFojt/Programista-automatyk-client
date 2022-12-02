@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useContext, useState } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 import { Context } from '../../../../../context/Context';
 import styles from './NewPost.module.css';
 import ReactQuill from 'react-quill';
@@ -10,10 +10,22 @@ export default function NewPost() {
   const [title, setTitle] = useState("");
   const [desc, setDesc] = useState("");
   const [file, setFile] = useState(null);
-  const [categories, setCategories] = useState([]);
-  const {user} = useContext(Context);
+  const [categories, setCategories] = useState(["Automatyka"]);
+  const {user, isFetching} = useContext(Context);
+  const [cats, setCats] = useState([]);
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    const getCats = async () => {
+      const res = await axios.get("/categories")
+      setCats(res.data)
+    }
+    getCats();
+  }, [])
+
   const handleSubmit = async(e) => {
     e.preventDefault();
+    setLoading(true);
     const newPost = {
       username: user.username,
       title,
@@ -29,52 +41,50 @@ export default function NewPost() {
       try {
         await axios.post("/upload", data);
       } catch(err) {
-
+        console.log(err)
       }
     }
     try {
       const res = await axios.post("/posts", newPost);
       window.location.replace("/post/" + res.data._id);
     } catch (err) {
-      
+      console.log(err)
     }
   };
+
   const onDescChange = (value) => {
     setDesc(value);
-  }
+  };
 
-  const options = [
-    { label: 'Automatyka', value: 'Automatyka' },
-    { label: 'Hydraulika', value: 'Hydraulika' },
-    { label: 'Pneumatyka', value: 'Pneumatyka' },
-  ];
-  
+  const options = cats.map((c) => ({ label: c.name, value: c.name }));
+
   return (
     <div className={styles.newPost}>
-      <div className={styles.imgContainer}>
+      {loading ? (
+      <div className="loading"><div></div><div></div><div></div><div></div></div>
+    ) : (
+      <form className={styles.form} onSubmit={handleSubmit}>
+        <div className={styles.formContainer}>
+        <label htmlFor="fileInput" className={styles.imgContainer}>
         {file ? (
           <img 
             className={styles.img}
             src={URL.createObjectURL(file)}
-            alt="blog"
+            alt="Post"
           />
-          ) : null
+          ) : ( <i className={`${styles.icon} fa-solid fa-image`}/>)
         }
-      </div>
-      <form className={styles.form} onSubmit={handleSubmit}>
-        <div className={styles.container}>
-          <label htmlFor="fileInput">
-            <i className={`${styles.icon} fa-solid fa-image`}/>
-            dodaj zdjęcie tytułowe
-          </label>
+      </label>
           <input 
             style={{display:"none"}}
-            type="file" 
+            type="file"
+            accept="image/png, image/jpeg"
             id="fileInput"
             onChange={(e) => setFile(e.target.files[0])}
           />
+          
           <label htmlFor="catSelect">Wybierz kategorie:</label>
-          <select name="catSelect" defaultValue="Automatyka" className={styles.catSelect} onChange={e=>setCategories(e.target.value)}>
+          <select name="catSelect" className={styles.catSelect} onChange={e=>setCategories([e.target.value])}>
             {options.map((option) => (
               <option className={styles.catOption} value={option.value}>{option.label}</option>
             ))}
@@ -90,18 +100,19 @@ export default function NewPost() {
           />
         </div>
         <div className={styles.editor}>
-        <EditorToolbar toolbarId={'t1'}/>
-        <ReactQuill
-              theme="snow"
-              value={desc}
-              onChange={onDescChange}
-              placeholder={"Napisz coś..."}
-              modules={modules('t1')}
-              formats={formats}
-            />
+          <EditorToolbar toolbarId={'t1'}/>
+          <ReactQuill
+                theme="snow"
+                value={desc}
+                onChange={onDescChange}
+                placeholder={"Napisz coś..."}
+                modules={modules('t1')}
+                formats={formats}
+              />
         </div>
-        <button className={styles.button} type="submit">Opublikuj</button>
+        <button className="button cursor__wait" type="submit" disabled={isFetching}>Opublikuj</button>
       </form>
+    )}
     </div>
   )
 }
