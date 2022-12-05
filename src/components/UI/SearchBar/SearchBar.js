@@ -4,7 +4,7 @@ import styles from './SearchBar.module.css';
 export default function SearchBar() {
   const [expand, setExpand] = useState(false);
   const expandHandler = () => {
-    expand ? setExpand(false) : setExpand(true)
+    setExpand(!expand);
   };
   return (
     <div className={styles.searchBar}>

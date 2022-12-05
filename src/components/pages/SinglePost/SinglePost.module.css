@@ -88,11 +88,9 @@ input:focus {
 }
 
 .editor {
-  max-width:75vw;
+  max-width: 50vw;
   margin: auto;
 }
-
-
 
 @media only screen and (max-width: 768px){
   .singlePost {

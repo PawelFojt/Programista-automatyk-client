@@ -11,9 +11,11 @@ export default function NewPost() {
   const [desc, setDesc] = useState("");
   const [file, setFile] = useState(null);
   const [categories, setCategories] = useState(["Automatyka"]);
-  const {user, isFetching} = useContext(Context);
+  const {user} = useContext(Context);
   const [cats, setCats] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [notCorrect, setNotCorrect] = useState(true);
+  const [payloadTooLarge, setPayloadTooLarge] = useState(false);
 
   useEffect(() => {
     const getCats = async () => {
@@ -22,6 +24,12 @@ export default function NewPost() {
     }
     getCats();
   }, [])
+
+  useEffect(() => {
+    title && desc ? setNotCorrect(false)  : setNotCorrect(true)
+    setPayloadTooLarge(false);
+    setLoading(false);
+  },[title, desc]);
 
   const handleSubmit = async(e) => {
     e.preventDefault();
@@ -42,6 +50,7 @@ export default function NewPost() {
         await axios.post("/upload", data);
       } catch(err) {
         console.log(err)
+        
       }
     }
     try {
@@ -49,6 +58,9 @@ export default function NewPost() {
       window.location.replace("/post/" + res.data._id);
     } catch (err) {
       console.log(err)
+      if (err.message === "Request failed with status code 413") {
+        setPayloadTooLarge(true)
+      } 
     }
   };
 
@@ -57,10 +69,10 @@ export default function NewPost() {
   };
 
   const options = cats.map((c) => ({ label: c.name, value: c.name }));
-
+  console.log(payloadTooLarge)
   return (
     <div className={styles.newPost}>
-      {loading ? (
+      {loading && !payloadTooLarge ? (
       <div className="loading"><div></div><div></div><div></div><div></div></div>
     ) : (
       <form className={styles.form} onSubmit={handleSubmit}>
@@ -110,7 +122,8 @@ export default function NewPost() {
                 formats={formats}
               />
         </div>
-        <button className="button cursor__wait" type="submit" disabled={isFetching}>Opublikuj</button>
+        <button className="button cursor__not-allowed" type="submit" disabled={notCorrect}>Opublikuj</button>
+        {payloadTooLarge ? <p className='error'>Post zajmuje zbyt dużą ilość pamięci!</p> : null}
       </form>
     )}
     </div>

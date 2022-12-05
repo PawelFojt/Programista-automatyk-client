@@ -1,27 +1,33 @@
 
 :root {
-  --color-dark: #000000;
-  --color-white: #d3dbeb;
-  --color-red: #af0d0d;
-  --bg-dark: #242322;
-  --bg-white: #1a1918;
-  --button: #4d0202;
+  --color-dark: hsl(0, 0%, 0%);
+  --color-white: hsl(220, 38%, 87%);
+  --color-red: hsl(0, 86%, 37%);
+  --bg-dark: hsl(30, 3%, 14%);
+  --bg-white: hsl(30, 4%, 10%);
+  --button: hsl(0, 95%, 15%);
   
-  --color-lightgrey: rgb(180, 180, 180);
+  --color-lightgrey: hsl(0, 0%, 71%);
   --font-header: 'Sarpanch', serif;
   --font-text: 'Ubuntu', sans-serif;
   font-family: var(--font-text);
 }
 
 .dark-mode {
-  --color-dark: #ffffff;
-  --color-white: #000000;
-  --color-red: #c70000;
-  --bg-dark: #fffdf8;
-  --bg-white: #e7e0d3;
-  --button: #ffa8a8; 
+  --color-dark: hsl(0, 0%, 100%);
+  --color-white: hsl(0, 0%, 0%);
+  --color-red: hsl(0, 100%, 39%);
+  --bg-dark: hsl(43, 100%, 99%);
+  --bg-white: hsl(39, 29%, 87%);
+  --button: hsl(0, 100%, 83%); 
 }
 
+.error {
+  color: hsl(0, 100%, 50%);
+  margin:auto;
+  padding-top: 1rem;
+  font-size: 1.5rem;
+}
 .button {
   width: 10rem;
   height: 2rem;
@@ -61,7 +67,7 @@
 .loading {
   display: inline-block;
   position: absolute;
-  left: 50%;
+  left: calc(50vw - 40px);
   top: 40%;
   width: 80px;
   height: 80px;
@@ -144,9 +150,10 @@
 }
 
 .ql-editor {
-  min-height: 50vh; 
+  min-height: 50vh;
   font-size: 16px;
 }
+
 .ql-snow .ql-tooltip.ql-flip {
   width: auto;
   white-space: normal;

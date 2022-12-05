@@ -20,9 +20,12 @@ export default function SinglePost() {
   const [desc, setDesc] = useState("");
   const [file, setFile] = useState(null);
   const [updateMode, setUpdateMode] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [notCorrect, setNotCorrect] = useState(true);
+  const [payloadTooLarge, setPayloadTooLarge] = useState(false);
   const PF = "/images/";
 
+  console.log(loading);
   //download single post from MongoDB
   useEffect(() => {
     const getPost = async () => {
@@ -30,10 +33,16 @@ export default function SinglePost() {
       setPost(res.data);
       setTitle(res.data.title);
       setDesc(res.data.desc);
+      setLoading(false);
     };
     getPost()
-    setLoading(false);
+    
   }, [path, updateMode])
+
+  useEffect(() => {
+    title && desc ? setNotCorrect(false)  : setNotCorrect(true)
+    setPayloadTooLarge(false)
+  },[title, desc]);
 
   //delete single post
   const handleDelete = async() => {
@@ -51,7 +60,7 @@ export default function SinglePost() {
 
   //update post
   const handleUpdate = async() => {
-    
+    setLoading(true);
     const updatedPost = {
       username:user.username,
       title, 
@@ -65,19 +74,20 @@ export default function SinglePost() {
       updatedPost.photo = filename;
       try {
         await axios.post("/upload", data);
-        setLoading(true);
+        
       } catch(err) {
         console.log(err)
       }
     }
     try {
       await axios.patch("/posts/" + path, updatedPost);
-      
       setUpdateMode(false);
     } catch(err) {
       console.log(err);
+      if (err.message === "Request failed with status code 413") {
+        setPayloadTooLarge(true)
+      }
     }
-    
   }
 
   //handle desc change from quill text editor
@@ -86,7 +96,7 @@ export default function SinglePost() {
   }
   return (
     <>
-    {loading ? (
+    {loading && !payloadTooLarge ? (
       <div className="loading"><div></div><div></div><div></div><div></div></div>
     ) : (
     <article className={styles.singlePost}>
@@ -165,28 +175,29 @@ export default function SinglePost() {
       </div>
       
       {updateMode ? (
-         <div className={styles.editor}>
-         <EditorToolbar toolbarId={'t1'}/>
-         <ReactQuill
-               theme="snow"
-               value={desc}
-               onChange={handleDescChange}
-               placeholder={"Napisz coś..."}
-               modules={modules('t1')}
-               formats={formats}
-             />
+          <div className={styles.editor}>
+            <EditorToolbar toolbarId={'t1'}/>
+            <ReactQuill
+                  theme="snow"
+                  value={desc}
+                  onChange={handleDescChange}
+                  placeholder={"Napisz coś..."}
+                  modules={modules('t1')}
+                  formats={formats}
+                />
          </div>
       ) : (
         <div className={`ql-editor ${styles.editor}`} dangerouslySetInnerHTML={{ __html: post.desc}}></div>
       )}
       {updateMode && (
         <button 
-          className="button" 
+          className="button"
+          disabled={notCorrect}
           onClick={handleUpdate}>
             Aktualizuj!
         </button>
       )}
-      
+      {payloadTooLarge ? <p className='error'>Post zajmuje zbyt dużą ilość pamięci!</p> : null}
     </article>
     )}
     </>

@@ -25,10 +25,9 @@ function App() {
     window.localStorage.setItem('mode', JSON.stringify(mode));
   }, [mode]);
   function modeHandler() {
-    mode === "dark-mode" ? setMode("c") : setMode("dark-mode");
+    mode === "dark-mode" ? setMode("") : setMode("dark-mode");
   }
   
-  console.log(mode);
   //get user info
   const {user} = useContext(Context);
   //mode change

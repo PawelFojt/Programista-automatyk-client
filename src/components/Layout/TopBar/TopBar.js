@@ -12,7 +12,7 @@ export default function TopBar(props) {
   const [menuButton, setMenuButton] = useState(false);
   const PF ="/images/";
   function switchMenu() {
-    menuButton ? setMenuButton(false) : setMenuButton(true)
+    setMenuButton(!menuButton);
   }
   
   return (
