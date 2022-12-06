@@ -67,7 +67,7 @@ export default function NewPost() {
     setDesc(value);
   };
 
-  const options = cats.map((c) => ({ label: c.name, value: c.name }));
+  const options = Array.isArray(cats) && cats.map((c) => ({ label: c.name, value: c.name }));
   return (
     <div className={styles.newPost}>
       {loading && !payloadTooLarge ? (
@@ -95,7 +95,7 @@ export default function NewPost() {
           
           <label htmlFor="catSelect">Wybierz kategorie:</label>
           <select name="catSelect" className={styles.catSelect} onChange={e=>setCategories([e.target.value])}>
-            {options.map((option, index) => (
+            {Array.isArray(options) && options.map((option, index) => (
               <option className={styles.catOption} key={index} value={option.value}>{option.label}</option>
             ))}
           </select>

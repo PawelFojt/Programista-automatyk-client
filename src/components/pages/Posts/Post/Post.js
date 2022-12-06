@@ -15,7 +15,7 @@ export default function Post({post}) {
         )}
         <div className={styles.info}>
           <div className={styles.categories}>
-            {post.categories.map(c => (
+            {Array.isArray(post.categories) && post.categories.map(c => (
               <span key={post._id} className={styles.category}><i>{c}</i></span>
             ))}
           </div>
