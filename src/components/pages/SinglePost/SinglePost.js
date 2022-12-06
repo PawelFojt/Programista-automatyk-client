@@ -23,7 +23,7 @@ export default function SinglePost() {
   const [loading, setLoading] = useState(true);
   const [notCorrect, setNotCorrect] = useState(true);
   const [payloadTooLarge, setPayloadTooLarge] = useState(false);
-  const PF = "/images/";
+  const PF = "https://programista-automatyk-server.herokuapp.com/images/";
 
   //download single post from MongoDB
   useEffect(() => {

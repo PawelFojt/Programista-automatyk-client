@@ -14,7 +14,7 @@ export default function Settings() {
 
   const [password, setPassword] = useState("");
   const [success, setSuccess] = useState(null);
-  const PF = "/images/";
+  const PF = "https://programista-automatyk-server.herokuapp.com/images/";
 
   const handlePasswordChange =(e)=>{
     const passwordInputValue = e.target.value.trim();
