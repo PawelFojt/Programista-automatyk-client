@@ -10,7 +10,7 @@ export default function Post({post}) {
         <img 
           className={styles.img}
           src={PF + post.photo}
-          alt="post photo"
+          alt="post"
         />
         )}
         <div className={styles.info}>
