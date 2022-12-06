@@ -10,7 +10,7 @@ import { Link } from 'react-router-dom';
 export default function TopBar(props) {
   const {user} = useContext(Context);
   const [menuButton, setMenuButton] = useState(false);
-  const PF ="/images/";
+  const PF ="https://programista-automatyk-server.herokuapp.com/images/";
   function switchMenu() {
     setMenuButton(!menuButton);
   }

@@ -3,14 +3,14 @@ import styles from './Post.module.css';
 import {Link} from 'react-router-dom';
 
 export default function Post({post}) {
-  const PF ="/images/";
+  const PF ="https://programista-automatyk-server.herokuapp.com/images/";
   return (
       <Link to={`/post/${post._id}`} className={styles.post}>
         {post.photo && (
         <img 
           className={styles.img}
           src={PF + post.photo}
-          alt=""
+          alt="post photo"
         />
         )}
         <div className={styles.info}>
