@@ -13,7 +13,6 @@ export default function Post({post}) {
           alt=""
         />
         )}
-        {console.log(post)}
         <div className={styles.info}>
           <div className={styles.categories}>
             {post.categories.map(c => (

@@ -1,6 +1,6 @@
-import axios from 'axios';
 import { useContext, useRef } from 'react';
 import { Link } from 'react-router-dom';
+import { loginUser } from '../../../../api';
 import { Context } from '../../../../context/Context';
 import styles from './Login.module.css';
 
@@ -15,10 +15,10 @@ export default function Login() {
     e.preventDefault()
     dispatch({type:"LOGIN_START"});
     try {
-      const res = await axios.post("/auth/login", {
+      const res = await loginUser({
         username: userRef.current.value,
         password: passwordRef.current.value,
-      })
+      });
       dispatch({type:"LOGIN_SUCCESS", payload:res.data});
     } catch(err) {
       dispatch({type:"LOGIN_FAILURE"});

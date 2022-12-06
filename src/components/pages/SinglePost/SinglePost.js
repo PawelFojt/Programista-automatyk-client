@@ -1,11 +1,11 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import styles from './SinglePost.module.css';
-import axios from 'axios';
 import { Context } from '../../../context/Context';
 import ReactQuill from 'react-quill';
 import EditorToolbar, { modules, formats } from "../../EditorToolbar/EditorToolbar";
 import 'react-quill/dist/quill.snow.css';
+import { deletePost, singlePost, updatePost, updatePostPhoto } from '../../../api';
 
 
 export default function SinglePost() {
@@ -25,11 +25,10 @@ export default function SinglePost() {
   const [payloadTooLarge, setPayloadTooLarge] = useState(false);
   const PF = "/images/";
 
-  console.log(loading);
   //download single post from MongoDB
   useEffect(() => {
     const getPost = async () => {
-      const res = await axios.get("/posts/" + path);
+      const res = await singlePost(path)
       setPost(res.data);
       setTitle(res.data.title);
       setDesc(res.data.desc);
@@ -48,9 +47,7 @@ export default function SinglePost() {
   const handleDelete = async() => {
     setLoading(true);
     try {
-      await axios.delete("/posts/" + path, {
-        data: {username:user.username},
-      });
+      await deletePost(path, {username:user.username});
       window.location.replace("/posts")
     } catch(err) {
       console.log(err);
@@ -73,14 +70,13 @@ export default function SinglePost() {
       data.append("file", file);
       updatedPost.photo = filename;
       try {
-        await axios.post("/upload", data);
-        
+        await updatePostPhoto(data);        
       } catch(err) {
         console.log(err)
       }
     }
     try {
-      await axios.patch("/posts/" + path, updatedPost);
+      await updatePost(path, updatedPost);
       setUpdateMode(false);
     } catch(err) {
       console.log(err);

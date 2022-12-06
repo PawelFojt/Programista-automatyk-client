@@ -1,7 +1,7 @@
-import axios from 'axios';
 import { useEffect, useState } from 'react';
 import styles from './Register.module.css';
 import PasswordAndConfirmPasswordValidation from './Password/PasswordAndConfirmPasswordValidation';
+import { registerUser } from '../../../../api';
 
 export default function Register() {
   const [username, setUsername] = useState("");
@@ -35,7 +35,7 @@ useEffect(() => {
     e.preventDefault();
     setError(false);
     try {
-      const res = await axios.post("/auth/register", {
+      const res = await registerUser({
         username,
         email,
         password

@@ -50,7 +50,6 @@ export default function NewPost() {
         await axios.post("/upload", data);
       } catch(err) {
         console.log(err)
-        
       }
     }
     try {
@@ -69,7 +68,6 @@ export default function NewPost() {
   };
 
   const options = cats.map((c) => ({ label: c.name, value: c.name }));
-  console.log(payloadTooLarge)
   return (
     <div className={styles.newPost}>
       {loading && !payloadTooLarge ? (
@@ -97,8 +95,8 @@ export default function NewPost() {
           
           <label htmlFor="catSelect">Wybierz kategorie:</label>
           <select name="catSelect" className={styles.catSelect} onChange={e=>setCategories([e.target.value])}>
-            {options.map((option) => (
-              <option className={styles.catOption} value={option.value}>{option.label}</option>
+            {options.map((option, index) => (
+              <option className={styles.catOption} key={index} value={option.value}>{option.label}</option>
             ))}
           </select>
           <input 

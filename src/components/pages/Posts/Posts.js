@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import styles from'./Posts.module.css';
 import Post from './Post/Post';
-import axios from 'axios';
 import SideBar from '../../Layout/SideBar/SideBar';
 import { useLocation } from 'react-router-dom';
+import { getPosts } from '../../../api';
 
 export default function Posts() {
   const [posts, setPosts] = useState([]);
@@ -13,7 +13,7 @@ export default function Posts() {
 
   useEffect(() =>{
     const fetchPosts = async ()=>{
-      const res = await axios.get("/posts" + search);
+      const res = await getPosts(search);
       setPosts(res.data);
       setLoading(false);
     }

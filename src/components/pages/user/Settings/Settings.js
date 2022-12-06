@@ -1,5 +1,5 @@
-import axios from 'axios';
 import React, { useContext, useState } from 'react';
+import { deleteUser, updateUser, updateUserPhoto } from '../../../../api';
 import { Context } from '../../../../context/Context';
 import PasswordAndConfirmPasswordValidation from '../Register/Password/PasswordAndConfirmPasswordValidation';
 import styles from './Settings.module.css';
@@ -40,19 +40,17 @@ export default function Settings() {
       data.append("file", file);
       updatedUser.profilePic = filename;
       try {
-        await axios.post("/upload", data);
+        await updateUserPhoto(data);
       } catch(err) {
         console.log(err);
       }
     }
     try {
-      const res = await axios.put("/user/" + user._id, updatedUser);
+      const res = await updateUser(user._id, updatedUser);
       setSuccess(true);
       dispatch({type:"UPDATE_SUCCESS", payload: res.data})
     } catch (err) {
       console.log(err);
-      console.log(user._id);
-
       setSuccess(false);
       dispatch({type:"UPDATE_FAILURE"});
     }
@@ -60,7 +58,7 @@ export default function Settings() {
 
   const handleDelete = async() => {
     try {
-      await axios.delete("/user/" + user._id);
+      await deleteUser(user._id);
       dispatch({type: "LOGOUT"});
       window.location.replace("/");
     } catch(err) {
