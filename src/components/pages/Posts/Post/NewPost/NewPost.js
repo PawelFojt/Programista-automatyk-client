@@ -1,10 +1,10 @@
-import axios from 'axios';
 import React, { useContext, useState, useEffect } from 'react'
 import { Context } from '../../../../../context/Context';
 import styles from './NewPost.module.css';
 import ReactQuill from 'react-quill';
 import EditorToolbar, { modules, formats } from "../../../../EditorToolbar/EditorToolbar";
 import 'react-quill/dist/quill.snow.css';
+import { createNewPost, createPostPhoto, getCategories } from '../../../../../api';
 
 export default function NewPost() {
   const [title, setTitle] = useState("");
@@ -19,8 +19,8 @@ export default function NewPost() {
 
   useEffect(() => {
     const getCats = async () => {
-      const res = await axios.get("/categories")
-      setCats(res.data)
+      const res = await getCategories();
+      setCats(res.data);
     }
     getCats();
   }, [])
@@ -47,13 +47,13 @@ export default function NewPost() {
       data.append("file", file);
       newPost.photo = filename;
       try {
-        await axios.post("/upload", data);
+        await createPostPhoto(data);
       } catch(err) {
         console.log(err)
       }
     }
     try {
-      const res = await axios.post("/posts", newPost);
+      const res = await createNewPost(newPost);
       window.location.replace("/post/" + res.data._id);
     } catch (err) {
       console.log(err)

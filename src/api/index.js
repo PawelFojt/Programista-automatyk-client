@@ -15,3 +15,7 @@ export const registerUser = (userInfo) => axios.post(`${url}/auth/register`, use
 export const updateUserPhoto = (data) => axios.post(`${url}/upload`, data);
 export const updateUser = (id, updatedUser) => axios.put(`${url}/user/` + id, updatedUser);
 export const deleteUser = (id) => axios.delete(`${url}/user/` + id);
+
+export const getCategories = () => axios.get("/categories");
+export const createPostPhoto = (data) => axios.post("/upload", data);
+export const createNewPost = (newPost) => axios.post("/posts", newPost);
