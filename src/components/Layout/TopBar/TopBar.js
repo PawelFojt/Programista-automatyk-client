@@ -6,11 +6,11 @@ import Header from '../../UI/Header/Header';
 import MenuButton from '../../UI/MenuButton/MenuButton';
 import { Context } from '../../../context/Context';
 import { Link } from 'react-router-dom';
+import { urlImg } from '../../../api';
 
 export default function TopBar(props) {
   const {user} = useContext(Context);
   const [menuButton, setMenuButton] = useState(false);
-  const PF ="https://programista-automatyk-server.herokuapp.com/images/";
   function switchMenu() {
     setMenuButton(!menuButton);
   }
@@ -38,7 +38,7 @@ export default function TopBar(props) {
                   {user.profilePic ? (
                     <img 
                     className={styles.img}
-                    src={PF+user.profilePic} 
+                    src={urlImg + user.profilePic} 
                     alt="profile" />
                   ) : (
                     <a href="https://www.instagram.com/pawelfojt/" className={styles.icon}><i className='fa-regular fa-user'></i></a>

@@ -1,6 +1,8 @@
 import axios from 'axios';
 
-const url = "https://programista-automatyk-server.herokuapp.com"
+const url = "https://programista-automatyk-server.herokuapp.com";
+//const url = "http://localhost:5000";
+export const urlImg = `${url}/images/`;
 
 //post API
 export const singlePost = (path) => axios.get(`${url}/posts/` + path);
@@ -16,6 +18,7 @@ export const updateUserPhoto = (data) => axios.post(`${url}/upload`, data);
 export const updateUser = (id, updatedUser) => axios.put(`${url}/user/` + id, updatedUser);
 export const deleteUser = (id) => axios.delete(`${url}/user/` + id);
 
+//new post API
 export const getCategories = () => axios.get(`${url}/categories`);
 export const createPostPhoto = (data) => axios.post(`${url}/upload`, data);
 export const createNewPost = (newPost) => axios.post(`${url}/posts`, newPost);
