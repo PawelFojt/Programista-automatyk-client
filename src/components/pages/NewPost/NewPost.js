@@ -100,7 +100,7 @@ export default function NewPost() {
             Wybierz kategorie:
           </label>
           <select name="catSelect" className={styles.catSelect} onChange={e=>setCategories([e.target.value])}>
-            {Array.isArray(options) && options.map((option, index) => (
+            {options?.map((option, index) => (
               <option className={styles.catOption} key={index} value={option.value}>{option.label}</option>
             ))}
           </select>

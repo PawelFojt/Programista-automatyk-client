@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { deleteUser, updateUser, updateUserPhoto } from '../../../../api';
+import { deleteUser, updateUser, updateUserPhoto, urlImg } from '../../../../api';
 import { Context } from '../../../../context/Context';
 import PasswordAndConfirmPasswordValidation from '../Register/Password/PasswordAndConfirmPasswordValidation';
 import styles from './Settings.module.css';
@@ -15,7 +15,6 @@ export default function Settings() {
 
   const [password, setPassword] = useState("");
   const [success, setSuccess] = useState(null);
-  const PF = "https://programista-automatyk-server.herokuapp.com/images/";
 
   const handlePasswordChange =(e)=>{
     const passwordInputValue = e.target.value.trim();
@@ -79,11 +78,15 @@ export default function Settings() {
           <i className={`${styles.userIcon} fa-solid fa-trash`}></i>
           </span>
         </div>
+        <div className={styles.userInfo}>
+          <p>Nazwa użytkownika: <span>{user.username}</span></p>
+          <p>Adres e-mail: <span>{user.email}</span></p>
+        </div>
         <form className={styles.form} onSubmit={handleSubmit}>
           <label>Zdjęcie profilowe</label>
           <div className={styles.img}>
-            {file && (<img
-              src={file ? URL.createObjectURL(file) : PF+user.profilePic}
+            {user.profilePic && (<img
+              src={file ? URL.createObjectURL(file) : urlImg+user.profilePic}
               alt="zdjęcie profilowe"
             />)}
             <label htmlFor="fileInput">

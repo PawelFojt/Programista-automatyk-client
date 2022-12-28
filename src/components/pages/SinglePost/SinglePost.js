@@ -21,6 +21,7 @@ export default function SinglePost() {
   const [desc, setDesc] = useState("");
   const [file, setFile] = useState(null);
   const [updateMode, setUpdateMode] = useState(false);
+  const [deletePopup, setDeletePopup] = useState(false);
   const [loading, setLoading] = useState(true);
   const [notCorrect, setNotCorrect] = useState(true);
   const [payloadTooLarge, setPayloadTooLarge] = useState(false);
@@ -48,6 +49,7 @@ export default function SinglePost() {
     setLoading(true);
     try {
       await deletePost(path, {username:user.username});
+      setDeletePopup(false);
       window.location.replace("/posts")
     } catch(err) {
       console.log(err);
@@ -91,6 +93,8 @@ export default function SinglePost() {
   const handleDescChange = (value) => {
     setDesc(value);
   }
+
+
   return (
     <>
     {loading && !payloadTooLarge ? (
@@ -148,7 +152,15 @@ export default function SinglePost() {
             {user && post.username === user.username && (
             <>
               <i className={`${styles.icon} fa-solid fa-pencil`} onClick={()=>setUpdateMode(true)}></i>
-              <i className={`${styles.icon} fa-solid fa-trash-can` } onClick={handleDelete}></i>
+              <i className={`${styles.icon} fa-solid fa-trash-can` } onClick={()=>setDeletePopup(true)}></i>
+                <div className={`${styles.popup} ${deletePopup && styles.popupClick}`}>
+                  <h4>Czy na pewno chcesz usunąć ten post?</h4>
+                  <div className={styles.popupContainer}>
+                    <button className={`${styles.yes} ${styles.button}`} onClick={handleDelete}>TAK</button>
+                    <button className={`${styles.no} ${styles.button}`} onClick={()=>setDeletePopup(false)}>NIE</button>
+                  </div>
+                </div>
+              
             </>
           )}
         </div>

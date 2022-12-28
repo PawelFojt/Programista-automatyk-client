@@ -16,7 +16,7 @@ export default function SideBar() {
   return (
     <>
       <ul className={styles.catList}>
-        {Array.isArray(cats) && cats.map((c) => (
+        {cats?.map((c) => (
           <Link key={c._id} to={`/posts/?cat=${c.name}`} className={styles.link}>
             <li className={styles.item} >{c.name}</li>
           </Link>

@@ -153,7 +153,13 @@
   min-height: 50vh;
   font-size: 16px;
 }
-
+.ql-toolbar {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 55px;
+  z-index: 9999;
+  background-color: var(--bg-dark);
+}
 .ql-snow .ql-tooltip.ql-flip {
   width: auto;
   white-space: normal;

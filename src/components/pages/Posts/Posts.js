@@ -35,6 +35,7 @@ export default function Posts() {
         </section>
       </div>
       <aside className={styles.aside}>
+        <h2 className={styles.catHeader}>Kategorie:</h2>
         <CategoryList />
       </aside>
     </div>
