@@ -1,23 +1,32 @@
 .container {
   display: flex;
-  height: 100%;
+  justify-content: space-between;
 }
-.posts {
-  flex:10;
+
+.postContainer {
+  flex:6;
+  display: flex;
+  justify-content: center;
+}
+.section {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  
+  margin: 1rem;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   grid-auto-rows: min-content;
   position: relative;
 }
 
-@media only screen and (max-width: 1400px) {
-  .posts {
-    grid-template-columns: 1fr 1fr;
-  }
+.aside {
+  flex: 1;
+  max-width: 20rem;
+  min-width: 10rem;
 }
 
+
 @media only screen and (max-width: 768px) {
-  .posts {
-    grid-template-columns: 1fr;
+  .aside {
+    display: none;
   }
 }

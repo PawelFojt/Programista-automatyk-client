@@ -4,7 +4,7 @@ import styles from './Home.module.css';
 
 export default function Home() {
   return (
-    <div className={styles.home}>
+      <>
         <h1 className={styles.header}>Automatyczny blog</h1>
         <div className={styles.container}>
           <div  className = {styles.item}>
@@ -20,7 +20,6 @@ export default function Home() {
             <p>Podziel się swoją wiedzą dodając nowy wpis!</p>
           </div>     
         </div>
-    </div>
-    
+      </>
   );
 }

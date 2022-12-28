@@ -1,10 +1,12 @@
 import React, { useContext, useState, useEffect } from 'react'
-import { Context } from '../../../../../context/Context';
+import { Context } from '../../../context/Context';
 import styles from './NewPost.module.css';
 import ReactQuill from 'react-quill';
-import EditorToolbar, { modules, formats } from "../../../../EditorToolbar/EditorToolbar";
+import EditorToolbar, { modules, formats } from "../../EditorToolbar/EditorToolbar";
 import 'react-quill/dist/quill.snow.css';
-import { createNewPost, createPostPhoto, getCategories } from '../../../../../api';
+import { v4 as uuid } from 'uuid';
+import { createNewPost, createPostPhoto, getCategories } from '../../../api';
+
 
 export default function NewPost() {
   const [title, setTitle] = useState("");
@@ -31,6 +33,8 @@ export default function NewPost() {
     setLoading(false);
   },[title, desc]);
 
+
+  //Creating new post
   const handleSubmit = async(e) => {
     e.preventDefault();
     setLoading(true);
@@ -42,7 +46,7 @@ export default function NewPost() {
     };
     if(file) {
       const data = new FormData();
-      const filename = Date.now() + file.name;
+      const filename = `${uuid()}-${file.name}`;
       data.append("name", filename);
       data.append("file", file);
       newPost.photo = filename;
@@ -75,25 +79,26 @@ export default function NewPost() {
     ) : (
       <form className={styles.form} onSubmit={handleSubmit}>
         <div className={styles.formContainer}>
-        <label htmlFor="fileInput" className={styles.imgContainer}>
-        {file ? (
-          <img 
-            className={styles.img}
-            src={URL.createObjectURL(file)}
-            alt="Post"
-          />
-          ) : ( <i className={`${styles.icon} fa-solid fa-image`}/>)
-        }
-      </label>
+          <label htmlFor="fileInput" className={styles.imgContainer}>
+            {file ? (
+              <img 
+                className={styles.img}
+                src={URL.createObjectURL(file)}
+                alt="Post"
+              />
+              ) : ( <i className={`${styles.icon} fa-solid fa-image`}/>)
+            }
+          </label>
           <input 
             style={{display:"none"}}
             type="file"
             accept="image/png, image/jpeg"
             id="fileInput"
             onChange={(e) => setFile(e.target.files[0])}
-          />
-          
-          <label htmlFor="catSelect">Wybierz kategorie:</label>
+          />  
+          <label htmlFor="catSelect">
+            Wybierz kategorie:
+          </label>
           <select name="catSelect" className={styles.catSelect} onChange={e=>setCategories([e.target.value])}>
             {Array.isArray(options) && options.map((option, index) => (
               <option className={styles.catOption} key={index} value={option.value}>{option.label}</option>
@@ -120,8 +125,10 @@ export default function NewPost() {
                 formats={formats}
               />
         </div>
-        <button className="button cursor__not-allowed" type="submit" disabled={notCorrect}>Opublikuj</button>
-        {payloadTooLarge ? <p className='error'>Post zajmuje zbyt dużą ilość pamięci!</p> : null}
+        <button className="button cursor__not-allowed" type="submit" disabled={notCorrect}>
+          Opublikuj
+        </button>
+        {payloadTooLarge && <p className='error'>Post zajmuje zbyt dużą ilość pamięci! Maksymalnie 16Mb</p>}
       </form>
     )}
     </div>

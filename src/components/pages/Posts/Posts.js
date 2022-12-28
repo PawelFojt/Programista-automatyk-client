@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styles from'./Posts.module.css';
 import Post from './Post/Post';
-import SideBar from '../../Layout/SideBar/SideBar';
+import CategoryList from '../../UI/CategoryList/CategoryList';
 import { useLocation } from 'react-router-dom';
 import { getPosts } from '../../../api';
 
@@ -22,17 +22,21 @@ export default function Posts() {
 
   return (
     <div className={styles.container}>
-      <div className={styles.posts}>
-        {loading ? (
-            <div className="loading"><div></div><div></div><div></div><div></div></div>
-          ) : (
-            posts.map((p) => (
-              <Post key={p._id} post={p} />
-            ))
-          )
-        }
+      <div className={styles.postContainer}>
+        <section className={styles.section}>
+          {loading ? (
+              <div className="loading"><div></div><div></div><div></div><div></div></div>
+            ) : (
+              posts.map((p) => (
+                <Post key={p._id} post={p} />
+              ))
+            )
+          }
+        </section>
       </div>
-      <SideBar />
+      <aside className={styles.aside}>
+        <CategoryList />
+      </aside>
     </div>
   );
 }

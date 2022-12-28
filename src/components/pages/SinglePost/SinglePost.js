@@ -5,7 +5,8 @@ import { Context } from '../../../context/Context';
 import ReactQuill from 'react-quill';
 import EditorToolbar, { modules, formats } from "../../EditorToolbar/EditorToolbar";
 import 'react-quill/dist/quill.snow.css';
-import { deletePost, singlePost, updatePost, updatePostPhoto } from '../../../api';
+import { v4 as uuid } from 'uuid';
+import { deletePost, singlePost, updatePost, updatePostPhoto, urlImg } from '../../../api';
 
 
 export default function SinglePost() {
@@ -23,7 +24,6 @@ export default function SinglePost() {
   const [loading, setLoading] = useState(true);
   const [notCorrect, setNotCorrect] = useState(true);
   const [payloadTooLarge, setPayloadTooLarge] = useState(false);
-  const PF = "https://programista-automatyk-server.herokuapp.com/images/";
 
   //download single post from MongoDB
   useEffect(() => {
@@ -65,7 +65,7 @@ export default function SinglePost() {
     }
     if(file) {
       const data = new FormData();
-      const filename = Date.now() + file.name;
+      const filename = `${uuid()}-${file.name}`;
       data.append("name", filename);
       data.append("file", file);
       updatedPost.photo = filename;
@@ -73,6 +73,7 @@ export default function SinglePost() {
         await updatePostPhoto(data);        
       } catch(err) {
         console.log(err)
+        console.log("ja to je to")
       }
     }
     try {
@@ -109,7 +110,7 @@ export default function SinglePost() {
             {post.photo ? (
               <img 
                 className={styles.img}
-                src={PF + post.photo}
+                src={`${urlImg}${post.photo}`}
                 alt="Post"
               />
               ) : (

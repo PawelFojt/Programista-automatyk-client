@@ -87,10 +87,6 @@ input:focus {
   color: inherit;
 }
 
-.editor {
-  max-width: 50vw;
-}
-
 @media only screen and (max-width: 768px){
   .singlePost {
     padding: 0;

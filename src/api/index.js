@@ -1,12 +1,12 @@
 import axios from 'axios';
 
 const url = "https://programista-automatyk-server.herokuapp.com";
-//const url = "http://localhost:5000";
-export const urlImg = `${url}/images/`;
+// const url = "http://localhost:5000";
+export const urlImg = "https://programista-automatyk.s3.eu-central-1.amazonaws.com/uploads/";
 
 //post API
 export const singlePost = (path) => axios.get(`${url}/posts/` + path);
-export const deletePost = (path, data) => axios.delete(`${url}/posts/` + path, {data: data});
+export const deletePost = (path, data) => axios.delete(`${url}/posts/` + path, {data});
 export const updatePostPhoto = (data) => axios.post(`${url}/upload`, data);
 export const updatePost = (path, updatedPost) => axios.patch(`${url}/posts/` + path, updatedPost);
 export const getPosts = (search) => axios.get(`${url}/posts` + search);

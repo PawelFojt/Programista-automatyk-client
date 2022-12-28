@@ -11,7 +11,7 @@ import Footer from './components/Layout/Footer/Footer';
 import Home from './components/pages/Home/Home';
 import Posts from './components/pages/Posts/Posts';
 import SinglePost from './components/pages/SinglePost/SinglePost';
-import NewPost from './components/pages/Posts/Post/NewPost/NewPost';
+import NewPost from './components/pages/NewPost/NewPost';
 import Settings from './components/pages/user/Settings/Settings';
 import Login from './components/pages/user/Login/Login';
 import Register from './components/pages/user/Register/Register';

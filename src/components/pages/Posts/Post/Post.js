@@ -5,11 +5,12 @@ import { urlImg } from '../../../../api';
 
 export default function Post({post}) {
   return (
-      <Link to={`/post/${post._id}`} className={styles.post}>
+    <article className={styles.post}>
+      <Link to={`/post/${post._id}`} className={styles.postLink}>
         {post.photo && (
         <img 
           className={styles.img}
-          src={urlImg + post.photo}
+          src={`${urlImg}${post.photo}`}
           alt="post"
         />
         )}
@@ -26,5 +27,6 @@ export default function Post({post}) {
         </div>
         <div className={styles.desc} dangerouslySetInnerHTML={{ __html: post.desc}}></div>
       </Link>
+    </article>
   )
 }

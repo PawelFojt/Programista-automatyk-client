@@ -3,6 +3,7 @@ import { deleteUser, updateUser, updateUserPhoto } from '../../../../api';
 import { Context } from '../../../../context/Context';
 import PasswordAndConfirmPasswordValidation from '../Register/Password/PasswordAndConfirmPasswordValidation';
 import styles from './Settings.module.css';
+import { v4 as uuid } from 'uuid';
 
 export default function Settings() {
   const {user, dispatch} = useContext(Context);
@@ -35,7 +36,7 @@ export default function Settings() {
     };
     if(file) {
       const data = new FormData();
-      const filename = Date.now() + file.name;
+      const filename = `${uuid()}-${file.name}`;
       data.append("name", filename);
       data.append("file", file);
       updatedUser.profilePic = filename;
