@@ -65,3 +65,6 @@
   -webkit-box-orient: vertical;
 }
 
+.desc img {
+  max-width: 100%;
+}
