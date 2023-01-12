@@ -14,7 +14,6 @@ export default function SideBar() {
     getCats();
   }, [])
   return (
-    <>
       <ul className={styles.catList}>
         {cats?.map((c) => (
           <Link key={c._id} to={`/posts/?cat=${c.name}`} className={styles.link}>
@@ -22,6 +21,5 @@ export default function SideBar() {
           </Link>
         ))}
       </ul>
-    </>
   );
 }

@@ -17,20 +17,25 @@ export default function MainMenu({menuButton, onClick}) {
 
   return (
     <div onClick={() => {onClick()}} className={`${styles.mainMenu} ${menuButton ? styles.menuButton : null}`}>
-        <ul className={styles.list}>
-          {links.map((element, index) => (
-            <NavLink 
-              to={element.linkTo} 
-              key={index} 
-              className={({ isActive}) => {
-                return isActive ? `${styles.item} ${styles.active}` : styles.item;
-              }}
-              >
-                {element.text}
-            </NavLink>
-          ))}
-          <Link to="/login" className={styles.item} onClick={handleLogout}>{user ? "WYLOGUJ" : "ZALOGUJ"}</Link >
-        </ul>
-      </div>
+      <ul className={styles.list}>
+        {links.map((element, index) => (
+          <NavLink 
+            to={element.linkTo} 
+            key={index} 
+            className={({ isActive}) => {
+              return isActive ? `${styles.item} ${styles.active}` : styles.item;
+            }}
+            >
+              {element.text}
+          </NavLink>
+        ))}
+        <Link 
+          to="/login" 
+          className={styles.item} 
+          onClick={handleLogout}>
+            {user ? "WYLOGUJ" : "ZALOGUJ"}
+        </Link >
+      </ul>
+    </div>
   )
 }

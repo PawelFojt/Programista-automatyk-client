@@ -22,6 +22,10 @@
   --button: hsl(0, 100%, 83%); 
 }
 
+::selection {
+  background-color:  var(--button);
+}
+
 .error {
   color: hsl(0, 100%, 50%);
   margin:auto;

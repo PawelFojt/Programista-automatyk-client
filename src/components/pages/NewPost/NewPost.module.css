@@ -1,11 +1,11 @@
 .newPost {
- max-width: 90rem;
- margin:auto;
- padding: 2vw 10vw;
+  max-width: 90rem;
+  margin: auto;
+  padding: 2vw 10vw;
 }
 
 .imgContainer {
-  margin:auto;
+  margin: auto;
 }
 
 .img {
@@ -34,19 +34,16 @@
   cursor: pointer;
 }
 
-
 .catSelect {
   background-color: inherit;
   border: none;
   color: var(--color-white);
   font-size: 1.2rem;
-  
 }
 
 .catOption {
   background-color: var(--bg-white);
   font-size: 1.2rem;
-  
 }
 
 .icon {

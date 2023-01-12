@@ -26,7 +26,6 @@ const handlePasswordChange =(e)=>{
 useEffect(() => {
   const usernameRegExp = /(?=.*?[#?!@$%^&*-\s])/;
   usernameRegExp.test(username) ? setUsernameErr(true) : setUsernameErr(false);
-
   const emailRegExp = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   !emailRegExp.test(email) ? setEmailErr(true) : setEmailErr(false);
 }, [username, email])
@@ -75,14 +74,10 @@ useEffect(() => {
           formErr={usernameErr || emailErr || username.length === 0}
           buttonText={"Zarejestruj"}
         />
-        
       </form>
       {error && (
         <span className={styles.error}>Nazwa użytkownika lub adres e-mail jest już zajęta</span>
       )}
-      
     </div>
-    
   )
-  
 }

@@ -1,58 +1,53 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
-import styles from './SinglePost.module.css';
-import { Context } from '../../../context/Context';
-import ReactQuill from 'react-quill';
+import React, { useContext, useEffect, useState } from "react";
+import { Link, useLocation } from "react-router-dom";
+import styles from "./SinglePost.module.css";
+import { Context } from "../../../context/Context";
+import ReactQuill from "react-quill";
 import EditorToolbar, { modules, formats } from "../../EditorToolbar/EditorToolbar";
-import 'react-quill/dist/quill.snow.css';
-import { v4 as uuid } from 'uuid';
-import { deletePost, singlePost, updatePost, updatePostPhoto, urlImg } from '../../../api';
-
+import "react-quill/dist/quill.snow.css";
+import { v4 as uuid } from "uuid";
+import { deletePost, singlePost, updatePost, updatePostPhoto, urlImg } from "../../../api";
+import PopupYesNo from "../../UI/PopupYesNo/PopupYesNo";
+import Loading from "../../UI/Loading/Loading"
 
 export default function SinglePost() {
-
-  //local consts
-
-  const location = useLocation()
+  const location = useLocation();
   const path = location.pathname.split("/")[2];
   const [post, setPost] = useState({});
-  const {user} = useContext(Context);
+  const { user } = useContext(Context);
   const [title, setTitle] = useState("");
   const [desc, setDesc] = useState("");
   const [file, setFile] = useState(null);
   const [updateMode, setUpdateMode] = useState(false);
-  const [deletePopup, setDeletePopup] = useState(false);
+  const [displayPopup, setDisplayPopup] = useState(false);
   const [loading, setLoading] = useState(true);
   const [notCorrect, setNotCorrect] = useState(true);
   const [payloadTooLarge, setPayloadTooLarge] = useState(false);
 
-  //download single post from MongoDB
   useEffect(() => {
     const getPost = async () => {
-      const res = await singlePost(path)
+      const res = await singlePost(path);
       setPost(res.data);
       setTitle(res.data.title);
       setDesc(res.data.desc);
       setLoading(false);
     };
-    getPost()
-    
-  }, [path, updateMode])
+    getPost();
+  }, [path, updateMode]);
 
   useEffect(() => {
-    title && desc ? setNotCorrect(false)  : setNotCorrect(true)
-    setPayloadTooLarge(false)
-  },[title, desc]);
+    title && desc ? setNotCorrect(false) : setNotCorrect(true);
+    setPayloadTooLarge(false);
+  }, [title, desc]);
 
-  //delete single post
   const handleDelete = async() => {
     setLoading(true);
     try {
-      await deletePost(path, {username:user.username});
-      setDeletePopup(false);
-      window.location.replace("/posts")
-    } catch(err) {
-      console.log(err);
+      await deletePost(path, { username: user.username });
+      setDisplayPopup(false);
+      window.location.replace("/posts");
+    } catch (error) {
+      console.error(error);
     }
   };
   
@@ -61,47 +56,44 @@ export default function SinglePost() {
   const handleUpdate = async() => {
     setLoading(true);
     const updatedPost = {
-      username:user.username,
-      title, 
+      username: user.username,
+      title,
       desc
-    }
-    if(file) {
+    };
+    if (file) {
       const data = new FormData();
       const filename = `${uuid()}-${file.name}`;
       data.append("name", filename);
       data.append("file", file);
       updatedPost.photo = filename;
       try {
-        await updatePostPhoto(data);        
-      } catch(err) {
-        console.log(err)
-        console.log("ja to je to")
+        await updatePostPhoto(data);
+      } catch (error) {
+        console.error(error);
       }
     }
     try {
       await updatePost(path, updatedPost);
       setUpdateMode(false);
-    } catch(err) {
-      console.log(err);
-      if (err.message === "Request failed with status code 413") {
-        setPayloadTooLarge(true)
+    } catch (error) {
+        console.error(error);
+        if (error.message === "Request failed with status code 413") {
+          setPayloadTooLarge(true);
       }
     }
-  }
+  };
 
   //handle desc change from quill text editor
   const handleDescChange = (value) => {
     setDesc(value);
   }
 
-
   return (
     <>
     {loading && !payloadTooLarge ? (
-      <div className="loading"><div></div><div></div><div></div><div></div></div>
+      <Loading />
     ) : (
     <article className={styles.singlePost}>
-      
       <label htmlFor="fileInput" className={styles.imgContainer}>
         {file ? (
           <img 
@@ -152,14 +144,10 @@ export default function SinglePost() {
             {user && post.username === user.username && (
             <>
               <i className={`${styles.icon} fa-solid fa-pencil`} onClick={()=>setUpdateMode(true)}></i>
-              <i className={`${styles.icon} fa-solid fa-trash-can` } onClick={()=>setDeletePopup(true)}></i>
-                <div className={`${styles.popup} ${deletePopup && styles.popupClick}`}>
-                  <h4>Czy na pewno chcesz usunąć ten post?</h4>
-                  <div className={styles.popupContainer}>
-                    <button className={`${styles.yes} ${styles.button}`} onClick={handleDelete}>TAK</button>
-                    <button className={`${styles.no} ${styles.button}`} onClick={()=>setDeletePopup(false)}>NIE</button>
-                  </div>
-                </div>
+              <i className={`${styles.icon} fa-solid fa-trash-can` } onClick={()=>setDisplayPopup(true)}></i>
+               {displayPopup && (
+                  <PopupYesNo yes={handleDelete} no={() => setDisplayPopup(false)} message="Czy na pewno chcesz usunąć ten post?"/>
+                )}
               
             </>
           )}
@@ -206,7 +194,8 @@ export default function SinglePost() {
             Aktualizuj!
         </button>
       )}
-      {payloadTooLarge ? <p className='error'>Post zajmuje zbyt dużą ilość pamięci!</p> : null}
+      {payloadTooLarge && 
+        <p className='error'>Post zajmuje zbyt dużą ilość pamięci!</p>}
     </article>
     )}
     </>
