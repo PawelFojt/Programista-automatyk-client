@@ -1,0 +1,17 @@
+.menuButton {
+    display: none;
+    background-color: var(--bg-white);
+    color: var(--color-white);
+    font-size: 2em;
+    border: none;
+}
+.menuButton:hover {
+    color: var(--color-red);
+    cursor: pointer;
+}
+@media only screen and (max-width: 768px) {
+    .menuButton {
+        display: block;
+        flex: 1;
+    }
+}

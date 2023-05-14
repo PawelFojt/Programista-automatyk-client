@@ -1,0 +1,27 @@
+.layout {
+    background: var(--bg-dark);
+    color: var(--color-white);
+    min-height: 100vh;
+    display:flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.topBar {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: var(--bg-white);
+    display: flex;
+    align-items: center;
+    height: 4rem;
+}
+
+
+
+.footer {
+    background: var(--bg-white);
+    display: flex;
+    justify-content: center;
+    min-height: 14vh;
+}

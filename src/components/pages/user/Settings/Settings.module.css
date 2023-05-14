@@ -1,0 +1,84 @@
+.container {
+    margin-top: 3rem;
+}
+.settings {
+    margin: auto;
+    max-width: 60rem;
+}
+.userInfo {
+    font-size: 1.1rem;
+}
+.userInfo > p {
+    margin-top: 0.4rem;
+}
+.title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.updateTitle {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: var(--color-white);
+}
+
+.deleteTitle {
+    color: var(--color-white);
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+}
+
+.img {
+    display: flex;
+    align-items: center;
+}
+
+.img > img {
+    width: 70px;
+    height: 70px;
+    border-radius: 20%;
+    margin: 1rem 2rem 1rem 0;
+}
+
+.userIcon {
+    width: 1.8rem;
+    height: 1.8rem;
+    background-color: var(--color-white);
+    color: var(--color-dark);
+    cursor: pointer;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.userIcon:hover {
+    background-color: var(--color-red);
+}
+
+.form > label {
+    color: var(--color-white);
+    font-size: 1.2rem;
+}
+
+.form > input {
+    background-color: var(--bg-dark);
+    color: var(--color-white);
+    border: none;
+    height: 2rem;
+    border-bottom: 1px var(--color-lightgrey) solid;
+    margin-bottom: 1rem;
+    padding: 1rem;
+    transition: all 0.3s;
+}
+
+.form > input:hover {
+    background-color: var(--color-lightgrey);
+    border-radius: 5px;
+}

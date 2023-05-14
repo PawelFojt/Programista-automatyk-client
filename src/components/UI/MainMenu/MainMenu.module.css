@@ -1,0 +1,90 @@
+.mainMenu {
+    background-color: var(--bg-white);
+}
+
+.list {
+    display: flex;
+    justify-content: flex-end;
+    padding: 0;
+    list-style: none;
+    height: 1.5rem;
+}
+
+.item {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(0.22rem + 0.8vw);
+    font-family: var(--font-header);
+    cursor: pointer;
+    color: var(--color-white);
+    transition: all 0.5s;
+    text-decoration: none;
+    margin-right: 0.9rem;
+}
+
+.active::before {
+    content: "";
+    position: absolute;
+    background-color: var(--color-red);
+    height: 2px;
+    width: 100%;
+    left: 0;
+    bottom: -5px;
+    transition: 0.3s;
+}
+
+.inActive::before {
+    content: "";
+    position: absolute;
+    background-color: var(--color-red);
+    height: 2px;
+    width: 0;
+    left: 50%;
+    bottom: -5px;
+    transition: 0.3s;
+}
+
+.item:hover {
+    color: var(--color-red);
+}
+
+.item::after {
+    content: "";
+    position: absolute;
+    background-color: var(--color-red);
+    height: 2px;
+    width: 0;
+    left: 50%;
+    bottom: -5px;
+    transition: 0.3s;
+}
+
+.item:hover::after {
+    left: 0;
+    width: 100%;
+}
+
+@media only screen and (max-width: 768px) {
+    .mainMenu {
+        position: absolute;
+        width: 100vw;
+        top: 0;
+        left: -100vw;
+        z-index: -1;
+        transition: 0.5s;
+    }
+
+    .menuButton {
+        left: 0vw;
+    }
+    .list {
+        height: 100vh;
+        flex-direction: column;
+        justify-content: center;
+    }
+    .item {
+        font-size: 2em;
+    }
+}

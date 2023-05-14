@@ -1,0 +1,20 @@
+.link {
+    text-decoration: inherit;
+    color: inherit;
+}
+
+.catList {
+    list-style-type: none;
+    font-size: 1.3rem;
+}
+
+.item:hover {
+    color: var(--color-red);
+    transition: all 0.3s;
+}
+
+@media only screen and (max-width: 768px) {
+    .sideBar {
+        display: none;
+    }
+}

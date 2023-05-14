@@ -1,0 +1,23 @@
+.socialMedia {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.icon {
+    font-size: 2.5rem;
+    margin-right: 1%;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.dark {
+    color: var(--color-white);
+}
+
+.white {
+    color: var(--color-white);
+}
+
+.icon:hover {
+    color: var(--color-red);
+}

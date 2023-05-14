@@ -1,0 +1,60 @@
+.nav {
+    flex: 8;
+    background-color: var(--bg-white);
+}
+
+.mode {
+    flex: 0.5;
+    font-size: 2rem;
+    border: none;
+    cursor: pointer;
+    color: var(--color-white);
+    background-color: inherit;
+    transition: all 0.3s;
+}
+
+.mode:hover {
+    color: var(--color-red);
+}
+
+.profile {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    cursor: pointer;
+}
+
+.search {
+    flex: 3;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.icon {
+    font-size: 2rem;
+    margin-right: 1%;
+    color: var(--color-white);
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+@media only screen and (max-width: 768px) {
+    .search {
+        display: none;
+        flex: 0;
+    }
+    .nav {
+        flex: 0;
+    }
+    .mode {
+        flex: 2;
+    }
+}
