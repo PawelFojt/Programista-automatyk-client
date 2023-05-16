@@ -1,18 +1,23 @@
 .postLink {
-    text-decoration: none;
-    background: var(--bg-white);
-    border-radius: 1rem;
-    overflow: hidden;
-    padding: 0.5em;
-    transition: 0.3s;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    max-width: 30rem;
+    aspect-ratio: 3/2;
+    border-radius: 3px;
+    justify-content: center;
+    background-color: var(--bg-white);
+    transition: all 0.3s;
 }
 
 .postLink:hover {
-    box-shadow: 1px 1px 15px var(--bg-white);
+    box-shadow: var(--color-red) 0px 0px 10px
 }
 
 .img {
     width: 100%;
+    padding: 1rem;
     height: calc(10vh + 10em);
     object-fit: contain;
     border-radius: 1rem;

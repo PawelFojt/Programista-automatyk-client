@@ -48,7 +48,7 @@ export default function Register() {
             });
             res.data && navigate("/login");
             alert(res.data.msg);
-        } catch (err) {
+        } catch (error) {
             setError(true);
         }
     };

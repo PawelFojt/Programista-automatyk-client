@@ -4,16 +4,17 @@ import { Link } from "react-router-dom";
 import { urlImg } from "../../../../api";
 
 export default function Post({ post }) {
+    let bgImgStyle = {}
+    if(post.photo) 
+        bgImgStyle = {
+            backgroundImage: `url(${urlImg}${post.photo})`,
+            backgroundRepeat: "no-repeat",
+            backgroundSize: "cover",
+            backgroundBlendMode: "overlay"
+        }
     return (
-        <Link to={`/post/${post._id}`} className={styles.postLink}>
-            <article className={styles.post}>
-                {post.photo && (
-                    <img
-                        className={styles.img}
-                        src={`${urlImg}${post.photo}`}
-                        alt="post"
-                    />
-                )}
+        <Link to={`/post/${post._id}`} className={styles.postLink} style={bgImgStyle}>
+            <article className={styles.post} >
                 <div className={styles.info}>
                     <div className={styles.categories}>
                         {post?.categories &&
@@ -31,10 +32,6 @@ export default function Post({ post }) {
                         {new Date(post.createdAt).toDateString()}
                     </span>
                 </div>
-                <div
-                    className={styles.desc}
-                    dangerouslySetInnerHTML={{ __html: post.desc }}
-                ></div>
             </article>
         </Link>
     );

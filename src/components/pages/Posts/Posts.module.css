@@ -1,6 +1,7 @@
 .container {
     display: flex;
     justify-content: space-between;
+    
 }
 
 .postContainer {
@@ -10,6 +11,7 @@
 }
 .section {
     display: grid;
+    width: 100%;
     margin: 1rem;
     gap: 1rem;
     grid-template-columns: repeat(auto-fill, minmax(430px, 1fr));
@@ -18,11 +20,9 @@
 
 .aside {
     flex: 1;
-    max-width: 20rem;
-    min-width: 10rem;
     padding: 1rem;
     margin: 1rem;
-    border-radius: 1rem;
+    border-radius: 5px;
     background-color: var(--bg-white);
 }
 

@@ -10,34 +10,45 @@
 }
 .container {
     display: flex;
-    gap: 5rem;
+    gap: 2rem;
     justify-content: center;
-    
+    align-items: center;
 }
 
 .item {
+    color: var(--color-white);
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    max-width: 30rem;
+    aspect-ratio: 3/2;
+    border-radius: 3px;
+    justify-content: center;
+    background-color: var(--bg-white);
+    transition: all 0.3s;
 }
 
+.item:hover {
+    box-shadow: var(--color-red) 0px 0px 10px
+}
 .icon {
+    font-size: 7rem;
     margin-bottom: 2rem;
-    font-size: 10rem;
     margin-right: 1%;
     color: var(--color-white);
     cursor: pointer;
     transition: all 0.3s;
 }
 
-.icon:hover {
-    color: var(--color-red);
-}
+
 
 @media only screen and (max-width: 1024px) {
     .header {
         font-size: 4rem;
     }
     .icon {
-        font-size: 9rem;
+        font-size: 5rem;
     }
 }
 @media only screen and (max-width: 768px) {
@@ -45,7 +56,7 @@
         font-size: 3rem;
     }
     .icon {
-        font-size: 8rem;
+        font-size: 4rem;
     }
 }
 @media only screen and (max-width: 480px) {
@@ -53,6 +64,6 @@
         font-size: 2rem;
     }
     .icon {
-        font-size: 7rem;
+        font-size: 3rem;
     }
 }

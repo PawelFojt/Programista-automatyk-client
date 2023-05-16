@@ -51,7 +51,7 @@ export default function NewPost() {
             try {
                 await createPostPhoto(data);
             } catch (error) {
-                console.log(error);
+                console.error(error);
             }
         }
         try {
@@ -59,7 +59,7 @@ export default function NewPost() {
             const res = await createNewPost(newPost, token);
             navigate(`/post/${res.data._id}`);
         } catch (error) {
-            console.log(error);
+            console.error(error);
             setErrorMsg(errorMessage(error.response.status));
         }
     };

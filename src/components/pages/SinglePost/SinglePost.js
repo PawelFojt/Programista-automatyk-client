@@ -61,10 +61,10 @@ export default function SinglePost() {
             navigate("/posts");
         } catch (error) {
             console.error(error);
+            setErrorMsg(errorMessage(error.response.status));
         }
     };
 
-    //update post
     const handleUpdate = async () => {
         setIsLoading(true);
         const updatedPost = {
@@ -88,7 +88,7 @@ export default function SinglePost() {
             await updatePost(path, updatedPost);
             setIsUpdateMode(false);
         } catch (error) {
-            console.log(error);
+            console.error(error);
             setErrorMsg(errorMessage(error.response.status));
         }
     };

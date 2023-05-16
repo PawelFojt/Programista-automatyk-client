@@ -1,11 +1,11 @@
 import axios from "axios";
 
 export const urlImg = "https://storage.googleapis.com/programista-automatyk/";
-const API = axios.create({
-    baseURL: "http://localhost:5000",
+
+const API = axios.create({ 
+    baseURL: 'https://programista-automatyk-server.herokuapp.com',
     withCredentials: true,
 });
-// const API = axios.create({ baseURL: 'https://programista-automatyk-server.herokuapp.com' });
 
 
 // post API

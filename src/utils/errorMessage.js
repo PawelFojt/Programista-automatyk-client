@@ -2,6 +2,9 @@ export const errorMessage = (errorResponseStatus) => {
     let errMsg = "";
 
     switch (errorResponseStatus) {
+        case 403:
+            window.location = "/settings"
+            break
         case 413:
             errMsg = "Post zajmuje zbyt dużą ilość pamięci! Maksymalnie 16Mb";
             break;

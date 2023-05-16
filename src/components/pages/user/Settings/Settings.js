@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useState } from "react";
 import {
     deleteUser,
     getToken,
@@ -35,21 +35,16 @@ export default function Settings() {
     const [expire, setExpire] = useState("");
     const navigate = useNavigate();
 
-    useEffect(() => {
-        refreshToken();
-    });
-
     const refreshToken = async () => {
         try {
             const response = await getToken();
             setAccessToken(response.data.accessToken);
-            console.log(accessToken)
             const decodedData = jwt_decode(accessToken);
-            console.log(decodedData);
             dispatch(UpdateSuccess({ ...decodedData, accessToken }));
             setExpire(decodedData.exp);
         } catch (error) {
             if (error.response) {
+                dispatch(Logout());
                 navigate("/");
             }
         }
@@ -103,7 +98,7 @@ export default function Settings() {
             try {
                 await updateUserPhoto(data);
             } catch (error) {
-                console.log(error);
+                console.error(error);
             }
         }
         try {
@@ -112,7 +107,7 @@ export default function Settings() {
             setSuccess(true);
             dispatch(UpdateSuccess(userInfo));
         } catch (error) {
-            console.log(error);
+            console.error(error);
             setSuccess(false);
             dispatch(UpdateFailure());
         }
@@ -125,7 +120,7 @@ export default function Settings() {
             dispatch(Logout());
             navigate("/");
         } catch (error) {
-            console.log(error);
+            console.error(error);
         }
     };
 
@@ -194,6 +189,7 @@ export default function Settings() {
                     {success ? <span>Zaktualizowano pomyślnie!</span> : null}
                 </form>
             </div>
+            <button className="button" onClick={() => refreshToken()}>Przedłóż sesję</button>
         </div>
     );
 }

@@ -13,12 +13,12 @@ export default function MainMenu({ menuButton, onClick }) {
         try {
             await logoutUser();
         } catch (error) {
-            console.log(error);
+            console.error(error);
         }
     };
     const links = [
         { linkTo: "/", text: "STRONA GŁÓWNA" },
-        { linkTo: "/posts", text: "BAZA WIEDZY" },
+        { linkTo: "/posts", text: "BLOG" },
         { linkTo: "/contact", text: "KONTAKT" },
         { linkTo: "/newPost", text: "NOWY WPIS" },
     ];

@@ -16,9 +16,9 @@
     align-items: center;
     height: 4rem;
 }
-
-
-
+.content{
+    flex: 1;
+}
 .footer {
     background: var(--bg-white);
     display: flex;

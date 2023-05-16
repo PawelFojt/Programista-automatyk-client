@@ -7,22 +7,17 @@ export default function Home() {
         <>
             <h1 className={styles.header}>Automatyczny blog</h1>
             <div className={styles.container}>
-                <div className={styles.item}>
-                    <Link to="/posts">
-                        <i
-                            className={`${styles.icon} fa-solid fa-book-open`}
-                        ></i>
-                    </Link>
-                    <p>
-                        Sprawdz dawkę wiedzy którą dla Ciebie przygotowaliśmy!
-                    </p>
-                </div>
-                <div className={styles.item}>
-                    <Link to="/newPost">
-                        <i className={`${styles.icon} fa-solid fa-book`}></i>
-                    </Link>
+                
+                <Link to="/posts" className={styles.item}>
+                    <i className={`${styles.icon} fa-solid fa-book-open`}></i>
+                    <p>Głodny wiedzy? Sprawdź mojego bloga!</p>
+                </Link>
+
+                <Link to="/newPost" className={styles.item}>
+                    <i className={`${styles.icon} fa-solid fa-book`}></i>
                     <p>Podziel się swoją wiedzą dodając nowy wpis!</p>
-                </div>
+                </Link>
+
             </div>
         </>
     );
