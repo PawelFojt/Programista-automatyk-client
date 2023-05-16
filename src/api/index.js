@@ -3,7 +3,7 @@ import axios from "axios";
 export const urlImg = "https://storage.googleapis.com/programista-automatyk/";
 
 const API = axios.create({ 
-    baseURL: 'http://localhost:5000',//'https://programista-automatyk-server.herokuapp.com',
+    baseURL: 'https://programista-automatyk-server.herokuapp.com',
     withCredentials: true,
 });
 
