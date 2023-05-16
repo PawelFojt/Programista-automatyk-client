@@ -15,7 +15,7 @@ import Contact from "./components/pages/Contact/Contact";
 import "./globalStyles.css";
 
 function App() {
-    //mode change
+    
     const [mode, setMode] = useState(
         JSON.parse(window.localStorage.getItem("mode"))
     );
@@ -25,22 +25,23 @@ function App() {
         window.localStorage.setItem("mode", JSON.stringify(mode));
     }, [mode]);
 
-    function modeHandler() {
+    function switchMode() {
         mode === "dark-mode" ? setMode("") : setMode("dark-mode");
     }
 
     const onSearch = (e) => {
         setSearchByTitle(e);
     };
+    
     //get user info
     const { user } = useContext(Context);
-    //mode change
+
     const topBar = (
         <TopBar
             mode={mode}
             onSearch={onSearch}
             onSwitch={() => {
-                modeHandler();
+                switchMode();
             }}
         />
     );
