@@ -67,6 +67,7 @@ export default function SinglePost() {
 
     const handleUpdate = async () => {
         setIsLoading(true);
+        const token = user.accessToken;
         const updatedPost = {
             username: user.username,
             title,
@@ -79,13 +80,13 @@ export default function SinglePost() {
             data.append("file", file);
             updatedPost.photo = filename;
             try {
-                await updatePostPhoto(data);
+                await updatePostPhoto(data, token);
             } catch (error) {
                 console.error(error);
             }
         }
         try {
-            await updatePost(path, updatedPost);
+            await updatePost(path, updatedPost, token);
             setIsUpdateMode(false);
         } catch (error) {
             console.error(error);
